@@ -1,2 +1,0 @@
-# rivendel
-Play LOTRLCG online
