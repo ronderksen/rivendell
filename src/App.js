@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { PageContainer } from './pages';
+import { Provider } from 'react-redux';
+import PageContainer from './pages/PageContainer';
+import createStateStore from './store';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    const store = createStateStore();
     return (
-      <Router>
-        <PageContainer />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <PageContainer />
+        </Router>
+      </Provider>
     );
   }
 }

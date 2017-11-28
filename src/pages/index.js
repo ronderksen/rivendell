@@ -1,4 +1,5 @@
-export { default as PageContainer } from './components/PageContainer';
-export { default as HomePage } from './Home/index';
-export { default as PlayPage } from './Play/index';
-export { default as AboutPage } from './About/index';
+export { default as Home } from './Home';
+export { default as Play } from './Play';
+export { default as About } from './About';
+export { default as Login } from './Login';
+export { default as Logout } from './Logout';
