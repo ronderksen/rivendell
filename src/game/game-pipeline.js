@@ -32,7 +32,7 @@ export default class GamePipeline {
     if(this.pipeline.length === 0) {
       this.pipeline.unshift(step);
     } else {
-      var currentStep = this.getCurrentStep();
+      const currentStep = this.getCurrentStep();
       if(currentStep.queueStep) {
         currentStep.queueStep(step);
       } else {
@@ -46,7 +46,7 @@ export default class GamePipeline {
       return;
     }
 
-    var step = this.getCurrentStep();
+    const step = this.getCurrentStep();
 
     if(step.cancelStep && step.isComplete) {
       step.cancelStep();
@@ -60,7 +60,7 @@ export default class GamePipeline {
 
   handleCardClicked(player, card) {
     if(this.pipeline.length > 0) {
-      var step = this.getCurrentStep();
+      const step = this.getCurrentStep();
       if(step.onCardClicked(player, card) !== false) {
         return true;
       }
@@ -91,7 +91,8 @@ export default class GamePipeline {
           return false;
         }
       } else {
-        this.pipeline = _.rest(this.pipeline, 1);
+        const [_, ...rest] = this.pipeline;
+        this.pipeline = rest;
       }
       this.pipeline = this.queue.concat(this.pipeline);
       this.queue = [];

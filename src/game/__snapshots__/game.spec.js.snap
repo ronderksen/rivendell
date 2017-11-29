@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Class: Game should instantiate given correct details 1`] = `
+GameEngine {
+  "_events": Object {},
+  "_eventsCount": 0,
+  "_maxListeners": 0,
+  "abilityCardStack": Array [
+    Object {
+      "card": null,
+      "source": "framework",
+      "stage": "framework",
+    },
+  ],
+  "abilityWindowStack": Array [],
+  "allowSpectators": true,
+  "cancelPromptUsed": false,
+  "createdAt": 2017-11-28T20:26:42.098Z,
+  "difficulty": "easy",
+  "domain": null,
+  "encounterCards": Array [],
+  "id": "test-id001",
+  "name": "Test game",
+  "owner": "chevalric",
+  "password": "",
+  "pipeline": GamePipeline {
+    "pipeline": Array [],
+    "queue": Array [],
+  },
+  "playStarted": false,
+  "playerCards": Object {},
+  "playerHeroes": Object {},
+  "playersAndSpectators": Object {
+    "chevalric": Player {},
+  },
+  "questCards": Array [],
+  "savedGameId": null,
+  "scenario": Scenario {},
+  "scenarioId": "01001",
+  "skipPhase": Object {},
+  "started": false,
+}
+`;

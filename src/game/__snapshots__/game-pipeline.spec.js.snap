@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Class: GamePipeline should continue through the pipeline as long as steps do not halt the flow 1`] = `
+Array [
+  MockStep {
+    "continue": [Function],
+    "id": 3,
+    "onCardClicked": [Function],
+    "onDebugInfo": [Function],
+    "onMenuCommand": [Function],
+  },
+]
+`;
+
+exports[`Class: GamePipeline should provide debug info for all steps 1`] = `
+Object {
+  "pipeline": Array [
+    "MockStep",
+    "MockStep",
+    "MockStep",
+  ],
+  "queue": Array [],
+}
+`;
