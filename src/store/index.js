@@ -1,6 +1,8 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { reactReduxFirebase } from 'react-redux-firebase';
 import reducers from '../reducers';
+import firebaseConfig from '../private/firebase-config';
 
 const initialState = {
   user: {
@@ -20,7 +22,12 @@ function getDebugStoreEnhancer() {
 }
 
 export default function createStateStore() {
+  const reduxFirebaseConfig = { userProfile: 'users' };
   const middleware = [thunk];
-  const enhancers = compose(applyMiddleware(...middleware), getDebugStoreEnhancer());
+  const enhancers = compose(
+    reactReduxFirebase(firebaseConfig, reduxFirebaseConfig),
+    applyMiddleware(...middleware), 
+    getDebugStoreEnhancer(),
+  );
   return createStore(reducers, initialState, enhancers);
 }

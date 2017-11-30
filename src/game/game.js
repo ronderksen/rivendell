@@ -37,7 +37,7 @@ export default class GameEngine extends EventEmitter {
     }, this.playersAndSpectators);
 
     this.playersAndSpectators = details.spectators.reduce((acc, spectator) => {
-      acc[player.user.username] = new Spectator(spectator.id, spectator.user);
+      acc[spectator.user.username] = new Spectator(spectator.id, spectator.user, this);
       return acc;
     }, this.playersAndSpectators);
 

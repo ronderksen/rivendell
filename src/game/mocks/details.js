@@ -15,7 +15,17 @@ export default function createMockDetails() {
         username: 'chevalric',
       },
       id: 'test-id002',
+    }, {
+      user: {
+        username: 'darius',
+      },
+      id: 'test-id003',
     }],
-    spectators: [],
+    spectators: [{
+      user: {
+        username: 'john',
+      },
+      id: 'test-id004',
+    }],
   }
 }

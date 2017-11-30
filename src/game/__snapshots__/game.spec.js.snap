@@ -23,19 +23,920 @@ GameEngine {
   "name": "Test game",
   "owner": "chevalric",
   "password": "",
-  "pipeline": GamePipeline {
+  "pipeline": Object {
+    "continue": [Function],
+    "initialize": [Function],
     "pipeline": Array [],
     "queue": Array [],
+    "queueStep": [Function],
   },
   "playStarted": false,
   "playerCards": Object {},
   "playerHeroes": Object {},
   "playersAndSpectators": Object {
-    "chevalric": Player {},
+    "chevalric": Object {
+      "game": [Circular],
+      "id": "test-id002",
+      "initialize": [Function],
+      "isOwner": true,
+      "left": false,
+      "name": "chevalric",
+      "preparedDeck": Object {
+        "allCards": Array [
+          Object {
+            "name": "ally-0",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-1",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-2",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-3",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-4",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-5",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-6",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-7",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-8",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-9",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-10",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-11",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-12",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-13",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-14",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-15",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-16",
+            "type": "ally",
+          },
+          Object {
+            "name": "attachment-0",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-1",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-2",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-3",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-4",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-5",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-6",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-7",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-8",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-9",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-10",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-11",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-12",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-13",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-14",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-15",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-16",
+            "type": "attachment",
+          },
+          Object {
+            "name": "event-0",
+            "type": "event",
+          },
+          Object {
+            "name": "event-1",
+            "type": "event",
+          },
+          Object {
+            "name": "event-2",
+            "type": "event",
+          },
+          Object {
+            "name": "event-3",
+            "type": "event",
+          },
+          Object {
+            "name": "event-4",
+            "type": "event",
+          },
+          Object {
+            "name": "event-5",
+            "type": "event",
+          },
+          Object {
+            "name": "event-6",
+            "type": "event",
+          },
+          Object {
+            "name": "event-7",
+            "type": "event",
+          },
+          Object {
+            "name": "event-8",
+            "type": "event",
+          },
+          Object {
+            "name": "event-9",
+            "type": "event",
+          },
+          Object {
+            "name": "event-10",
+            "type": "event",
+          },
+          Object {
+            "name": "event-11",
+            "type": "event",
+          },
+          Object {
+            "name": "event-12",
+            "type": "event",
+          },
+          Object {
+            "name": "event-13",
+            "type": "event",
+          },
+          Object {
+            "name": "event-14",
+            "type": "event",
+          },
+          Object {
+            "name": "event-15",
+            "type": "event",
+          },
+          Object {
+            "name": "hero-0",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-1",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-2",
+            "type": "hero",
+          },
+        ],
+        "drawCards": Array [
+          Object {
+            "name": "ally-0",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-1",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-2",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-3",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-4",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-5",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-6",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-7",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-8",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-9",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-10",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-11",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-12",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-13",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-14",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-15",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-16",
+            "type": "ally",
+          },
+          Object {
+            "name": "attachment-0",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-1",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-2",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-3",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-4",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-5",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-6",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-7",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-8",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-9",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-10",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-11",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-12",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-13",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-14",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-15",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-16",
+            "type": "attachment",
+          },
+          Object {
+            "name": "event-0",
+            "type": "event",
+          },
+          Object {
+            "name": "event-1",
+            "type": "event",
+          },
+          Object {
+            "name": "event-2",
+            "type": "event",
+          },
+          Object {
+            "name": "event-3",
+            "type": "event",
+          },
+          Object {
+            "name": "event-4",
+            "type": "event",
+          },
+          Object {
+            "name": "event-5",
+            "type": "event",
+          },
+          Object {
+            "name": "event-6",
+            "type": "event",
+          },
+          Object {
+            "name": "event-7",
+            "type": "event",
+          },
+          Object {
+            "name": "event-8",
+            "type": "event",
+          },
+          Object {
+            "name": "event-9",
+            "type": "event",
+          },
+          Object {
+            "name": "event-10",
+            "type": "event",
+          },
+          Object {
+            "name": "event-11",
+            "type": "event",
+          },
+          Object {
+            "name": "event-12",
+            "type": "event",
+          },
+          Object {
+            "name": "event-13",
+            "type": "event",
+          },
+          Object {
+            "name": "event-14",
+            "type": "event",
+          },
+          Object {
+            "name": "event-15",
+            "type": "event",
+          },
+        ],
+        "heroes": Array [
+          Object {
+            "name": "hero-0",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-1",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-2",
+            "type": "hero",
+          },
+        ],
+      },
+      "user": Object {
+        "username": "chevalric",
+      },
+    },
+    "darius": Object {
+      "game": [Circular],
+      "id": "test-id003",
+      "initialize": [Function],
+      "isOwner": false,
+      "left": false,
+      "name": "darius",
+      "preparedDeck": Object {
+        "allCards": Array [
+          Object {
+            "name": "ally-0",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-1",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-2",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-3",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-4",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-5",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-6",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-7",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-8",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-9",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-10",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-11",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-12",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-13",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-14",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-15",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-16",
+            "type": "ally",
+          },
+          Object {
+            "name": "attachment-0",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-1",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-2",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-3",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-4",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-5",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-6",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-7",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-8",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-9",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-10",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-11",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-12",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-13",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-14",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-15",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-16",
+            "type": "attachment",
+          },
+          Object {
+            "name": "event-0",
+            "type": "event",
+          },
+          Object {
+            "name": "event-1",
+            "type": "event",
+          },
+          Object {
+            "name": "event-2",
+            "type": "event",
+          },
+          Object {
+            "name": "event-3",
+            "type": "event",
+          },
+          Object {
+            "name": "event-4",
+            "type": "event",
+          },
+          Object {
+            "name": "event-5",
+            "type": "event",
+          },
+          Object {
+            "name": "event-6",
+            "type": "event",
+          },
+          Object {
+            "name": "event-7",
+            "type": "event",
+          },
+          Object {
+            "name": "event-8",
+            "type": "event",
+          },
+          Object {
+            "name": "event-9",
+            "type": "event",
+          },
+          Object {
+            "name": "event-10",
+            "type": "event",
+          },
+          Object {
+            "name": "event-11",
+            "type": "event",
+          },
+          Object {
+            "name": "event-12",
+            "type": "event",
+          },
+          Object {
+            "name": "event-13",
+            "type": "event",
+          },
+          Object {
+            "name": "event-14",
+            "type": "event",
+          },
+          Object {
+            "name": "event-15",
+            "type": "event",
+          },
+          Object {
+            "name": "hero-0",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-1",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-2",
+            "type": "hero",
+          },
+        ],
+        "drawCards": Array [
+          Object {
+            "name": "ally-0",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-1",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-2",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-3",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-4",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-5",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-6",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-7",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-8",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-9",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-10",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-11",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-12",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-13",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-14",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-15",
+            "type": "ally",
+          },
+          Object {
+            "name": "ally-16",
+            "type": "ally",
+          },
+          Object {
+            "name": "attachment-0",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-1",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-2",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-3",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-4",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-5",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-6",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-7",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-8",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-9",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-10",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-11",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-12",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-13",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-14",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-15",
+            "type": "attachment",
+          },
+          Object {
+            "name": "attachment-16",
+            "type": "attachment",
+          },
+          Object {
+            "name": "event-0",
+            "type": "event",
+          },
+          Object {
+            "name": "event-1",
+            "type": "event",
+          },
+          Object {
+            "name": "event-2",
+            "type": "event",
+          },
+          Object {
+            "name": "event-3",
+            "type": "event",
+          },
+          Object {
+            "name": "event-4",
+            "type": "event",
+          },
+          Object {
+            "name": "event-5",
+            "type": "event",
+          },
+          Object {
+            "name": "event-6",
+            "type": "event",
+          },
+          Object {
+            "name": "event-7",
+            "type": "event",
+          },
+          Object {
+            "name": "event-8",
+            "type": "event",
+          },
+          Object {
+            "name": "event-9",
+            "type": "event",
+          },
+          Object {
+            "name": "event-10",
+            "type": "event",
+          },
+          Object {
+            "name": "event-11",
+            "type": "event",
+          },
+          Object {
+            "name": "event-12",
+            "type": "event",
+          },
+          Object {
+            "name": "event-13",
+            "type": "event",
+          },
+          Object {
+            "name": "event-14",
+            "type": "event",
+          },
+          Object {
+            "name": "event-15",
+            "type": "event",
+          },
+        ],
+        "heroes": Array [
+          Object {
+            "name": "hero-0",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-1",
+            "type": "hero",
+          },
+          Object {
+            "name": "hero-2",
+            "type": "hero",
+          },
+        ],
+      },
+      "user": Object {
+        "username": "darius",
+      },
+    },
+    "john": Spectator {
+      "constructor": [Function],
+      "game": [Circular],
+      "id": "test-id004",
+      "initialize": [Function],
+      "left": false,
+      "user": Object {
+        "username": "john",
+      },
+    },
   },
   "questCards": Array [],
   "savedGameId": null,
-  "scenario": Scenario {},
+  "scenario": Object {
+    "getEncounterSets": [Function],
+    "getQuestCards": [Function],
+  },
   "scenarioId": "01001",
   "skipPhase": Object {},
   "started": false,
