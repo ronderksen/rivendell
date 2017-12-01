@@ -19,7 +19,7 @@ export default class EngagementPhase extends Phase {
     super(game, 'engagement');
 
     this.initialize([
-      // OptionalEngagementPrompt(),
+      OptionalEngagementPrompt(),
       new ActionWindow(this.game, 'After optional engagement', 'Encounter'),
       new SimpleStep(game, () => this.engageEnemies()),
       new ActionWindow(this.game, 'After engagement checks', 'Encounter'),

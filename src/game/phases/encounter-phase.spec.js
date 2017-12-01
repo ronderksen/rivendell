@@ -1,6 +1,24 @@
 import EncounterPhase from './encounter-phase';
 import { cardTypes } from '../constants';
 
+jest.mock('./encounter/optional-engagement');
+import OptionalEngagement from './encounter/optional-engagement';
+OptionalEngagement.mockImplementation(() => ({
+  continue: jest.fn().mockReturnValue(true)
+}));
+
+jest.mock('./action-window');
+import ActionWindow from './action-window';
+ActionWindow.mockImplementation(() => ({
+  continue: jest.fn().mockReturnValue(true)
+}));
+
+jest.mock('./simple-step');
+import SimpleStep from './simple-step';
+SimpleStep.mockImplementation((game, continueFunc) => ({
+  continue: jest.fn().mockReturnValue(continueFunc())
+}));
+
 function playersFactory(count) {
   const players = [{
       name: 'chevalric',
@@ -56,7 +74,11 @@ describe('Class: EncounterPhase', () => {
   it('should end immediately if no staged enemies', () => {
     const game = mockGame(playersFactory(2), []);
     const encounter = new EncounterPhase(game);
+    const pipeline = [...encounter.pipeline.pipeline];
     encounter.continue();
+    pipeline.forEach(step => {
+      expect(step.continue).toHaveBeenCalledTimes(1);
+    });
     expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(0);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(0);

@@ -1,3 +1,5 @@
+import PlayerOrderPrompt from '../prompts/player-order-prompt';
+
 export default class ActionWindow extends PlayerOrderPrompt {
   constructor(game, title, windowName) {
     super(game);

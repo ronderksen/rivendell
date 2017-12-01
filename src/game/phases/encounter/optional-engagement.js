@@ -1,7 +1,7 @@
-import AllPlayerPrompt from '../../prompts/all-player-prompt';
+import PlayerOrderPrompt from '../../prompts/player-order-prompt';
 import { cardTypes } from '../../constants';
 
-export default class OptionalEngagementPrompt extends AllPlayerPrompt {
+export default class OptionalEngagementPrompt extends PlayerOrderPrompt {
   activePrompt() {
     return {
       menuTitle: 'Select an enemy to engage',
