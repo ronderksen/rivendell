@@ -18,7 +18,7 @@ export default class SetupPhase extends Phase {
       new SimpleStep(game, () => this.setupDone())
     ]);
   }
-
+  
   setupHeroes() {
     this.game.raiseEvent('onHeroSetup');
     this.players.forEach(player => {

@@ -21,9 +21,29 @@ export default class Phase extends BaseStep {
     this.pipeline.queueStep(step);
   }
 
+  isComplete() {
+    return this.pipeline.length === 0;
+  }
+
+  onCardClicked(player, card) {
+    return this.pipeline.handleCardClicked(player, card);
+  }
+
+  onMenuCommand(player, arg, method) {
+    return this.pipeline.handleMenuCommand(player, arg, method);
+  }
+
+  cancelStep() {
+    this.pipeline.cancelStep();
+  }
+
+  continue() {
+    return this.pipeline.continue();
+  }
+
   startPhase() {
     this.game.currentPhase = this.name;
-    _.each(this.game.getPlayers(), player => {
+    this.game.getPlayers().forEach(player => {
       player.phase = this.name;
     });
     this.game.reapplyStateDependentEffects();
@@ -33,7 +53,7 @@ export default class Phase extends BaseStep {
   endPhase() {
     this.game.raiseEvent('onPhaseEnded', { phase: this.name });
     this.game.currentPhase = '';
-    _.each(this.game.getPlayers(), player => {
+    this.game.getPlayers().forEach(player => {
       player.phase = '';
     });
     this.game.raiseEvent('onAtEndOfPhase');

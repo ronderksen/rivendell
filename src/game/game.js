@@ -4,7 +4,7 @@ import Player from './player';
 import Spectator from './spectator';
 import Scenario from './scenario';
 import SetupPhase from './phases/setup-phase';
-import SimpleStep from './phases/simple-step';
+import phases from './phases';
 
 export default class GameEngine extends EventEmitter {
   constructor(details, options = {}) {
@@ -182,6 +182,8 @@ export default class GameEngine extends EventEmitter {
     // get all player cards
     this.allPlayerCards = this.gatherAllCards();
 
+    const { SetupPhase, SimpleStep } = phases;
+
     this.pipeline.initialize([
       new SetupPhase(this),
       new SimpleStep(this, () => this.beginRound()),
@@ -204,12 +206,23 @@ export default class GameEngine extends EventEmitter {
   }
 
   beginRound() {
+    const {
+      ResourcePhase,
+      PlanningPhase,
+      QuestPhase,
+      TravelPhase,
+      EncounterPhase,
+      CombatPhase,
+      RefreshPhase,
+      SimpleStep
+    } = phases;
+
     this.raiseEvent('onBeginRound');
     this.queueStep(new ResourcePhase(this));
     this.queueStep(new PlanningPhase(this));
     this.queueStep(new QuestPhase(this));
     this.queueStep(new TravelPhase(this));
-    this.queueStep(new EngagementPhase(this));
+    this.queueStep(new EncounterPhase(this));
     this.queueStep(new CombatPhase(this));
     this.queueStep(new RefreshPhase(this));
     this.queueStep(new SimpleStep(this, () => this.beginRound()));

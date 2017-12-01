@@ -46,7 +46,7 @@ Scenario.mockImplementation(() => ({
   getQuestCards: jest.fn().mockReturnValue([]),
 }));
 jest.mock('./phases/setup-phase');
-jest.mock('./phases/simple-step');
+// jest.mock('./phases/simple-step');
 
 describe('Class: Game', () => {
   const RealDate = global.Date;
