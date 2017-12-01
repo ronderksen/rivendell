@@ -1,5 +1,8 @@
 import Phase from './phase';
 import SimpleStep from './simple-step';
+import OptionalEngagementPrompt from './encounter/optional-engagement';
+import ActionWindow from './action-window';
+
 import { cardTypes } from '../constants';
 
 function byThreatValue(a, b) {
@@ -17,7 +20,9 @@ export default class EngagementPhase extends Phase {
 
     this.initialize([
       // OptionalEngagementPrompt(),
+      new ActionWindow(this.game, 'After optional engagement', 'Encounter'),
       new SimpleStep(game, () => this.engageEnemies()),
+      new ActionWindow(this.game, 'After engagement checks', 'Encounter'),
     ])
   }
 
@@ -45,6 +50,7 @@ export default class EngagementPhase extends Phase {
   makeEngagementCheck(player, stagedEnemies) {
     return stagedEnemies.some(enemy => {
       if (enemy.threat <= player.threatCount) {
+        this.game.raiseEvent('onEnemyEngaged', { player, enemy });
         player.engagedEnemies.push(enemy);
         stagedEnemies.shift();
         return true;
