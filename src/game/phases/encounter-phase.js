@@ -16,7 +16,7 @@ function byThreatValue(a, b) {
 
 export default class EngagementPhase extends Phase {
   constructor(game) {
-    super(game, 'engagement');
+    super(game, 'encounter');
 
     this.initialize([
       OptionalEngagementPrompt(),
