@@ -1,6 +1,7 @@
 import GamePipeline from '../game-pipeline';
 import BaseStep from './base-step';
 import SimpleStep from './simple-step';
+import { onPhaseStarted, onPhaseEnded } from '../events';
 
 export default class Phase extends BaseStep {
   constructor(game, name) {
@@ -47,15 +48,15 @@ export default class Phase extends BaseStep {
       player.phase = this.name;
     });
     this.game.reapplyStateDependentEffects();
-    this.game.raiseEvent('onPhaseStarted', { phase: this.name });
+    this.game.raiseEvent(onPhaseStarted, { phase: this.name });
   }
 
   endPhase() {
-    this.game.raiseEvent('onPhaseEnded', { phase: this.name });
+    this.game.raiseEvent(onPhaseEnded, { phase: this.name });
     this.game.currentPhase = '';
     this.game.getPlayers().forEach(player => {
       player.phase = '';
     });
-    this.game.raiseEvent('onAtEndOfPhase');
+    this.game.raiseEvent(onAtEndOfPhase);
   }
 }

@@ -4,6 +4,7 @@ import OptionalEngagementPrompt from './encounter/optional-engagement';
 import ActionWindow from './action-window';
 
 import { cardTypes } from '../constants';
+import { onEnemyEngaged } from '../events';
 
 function byThreatValue(a, b) {
   if (a.threat > b.threat) {
@@ -50,7 +51,7 @@ export default class EngagementPhase extends Phase {
   makeEngagementCheck(player, stagedEnemies) {
     return stagedEnemies.some(enemy => {
       if (enemy.threat <= player.threatCount) {
-        this.game.raiseEvent('onEnemyEngaged', { player, enemy });
+        this.game.raiseEvent(onEnemyEngaged, { player, enemy });
         player.engagedEnemies.push(enemy);
         stagedEnemies.shift();
         return true;

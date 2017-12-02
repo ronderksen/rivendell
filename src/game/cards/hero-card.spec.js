@@ -76,7 +76,7 @@ describe('HeroCard', () => {
   it('should be able to have multiple spheres', () => {
     const { leadership, lore } = spheres;
     const aragorn = new HeroCard(owner, cardData);
-    aragorn.addResourceIcon(lore);
+    aragorn.addSphere(lore);
     expect(aragorn.spheres).toEqual([
       leadership,
       lore,
@@ -85,7 +85,7 @@ describe('HeroCard', () => {
 
   it('should log a game message when an invalid sphere is used', () => {
     const aragorn = new HeroCard(owner, cardData);
-    aragorn.addResourceIcon('moria');
+    aragorn.addSphere('moria');
     expect(owner.game.addMessage).toHaveBeenCalledWith('Unable to add sphere \'moria\' to Aragorn');
   });
 

@@ -2,6 +2,7 @@ import Phase from './phase';
 import SelectFirstPlayerPrompt from './setup/select-first-player';
 import KeepOrMulliganPrompt from './setup/keep-or-mulligan';
 import SimpleStep from './simple-step';
+import { onHeroSetup } from '../events';
 
 export default class SetupPhase extends Phase {
   constructor(game) {
@@ -18,9 +19,9 @@ export default class SetupPhase extends Phase {
       new SimpleStep(game, () => this.setupDone())
     ]);
   }
-  
+
   setupHeroes() {
-    this.game.raiseEvent('onHeroSetup');
+    this.game.raiseEvent(onHeroSetup);
     this.players.forEach(player => {
       player.heroes.forEach(hero => hero.applyPersistentEffects());
     });

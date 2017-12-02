@@ -1,26 +1,7 @@
 import { cardTypes, spheres } from '../constants';
-import BaseCard from './base-card';
+import CharacterCard from './character-card';
 
-class HeroCard extends BaseCard {
-  constructor(owner, cardData) {
-    super(owner, cardData);
-
-    this.type = cardTypes.hero;
-    this.isUnique = cardData.isUnique;
-    this.startingThreat = cardData.startingThreat;
-    this.willPower = cardData.willPower;
-    this.attack = cardData.attack;
-    this.defense = cardData.defense;
-    this.hitPoints = cardData.hitPoints;
-    this.spheres = [];
-    this.resources = 0;
-    this.addResourceIcon(cardData.sphere);
-
-    this.isCommittedToQuest = false;
-    this.isAttacking = false;
-    this.isDefending = false;
-  }
-
+class HeroCard extends CharacterCard {
   addResources(amount = 1) {
       this.resources += amount;
   }
@@ -34,7 +15,7 @@ class HeroCard extends BaseCard {
     this.resources -= amount;
   }
 
-  addResourceIcon(sphere) {
+  addSphere(sphere) {
     const validSpheres = Object.values(spheres);
     if (validSpheres.indexOf(sphere) === -1) {
       if (this.spheres.length === 0) {

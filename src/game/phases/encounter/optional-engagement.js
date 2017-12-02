@@ -1,5 +1,6 @@
 import PlayerOrderPrompt from '../../prompts/player-order-prompt';
 import { cardTypes } from '../../constants';
+import { onEnemyEngaged } from '../../events';
 
 export default class OptionalEngagementPrompt extends PlayerOrderPrompt {
   activePrompt() {
@@ -21,6 +22,6 @@ export default class OptionalEngagementPrompt extends PlayerOrderPrompt {
   onMenuCommand(player, enemy) {
     const selectedEnemy = this.game.getStagingCards().find(c => c.id === enemy);
     this.game.addMessage(`${player.name} has engaged ${selectedEnemy.name}.`);
-    this.game.raiseEvent('onEnemyEngaged', { player, enemy });
+    this.game.raiseEvent(onEnemyEngaged, { player, enemy });
   }
 }

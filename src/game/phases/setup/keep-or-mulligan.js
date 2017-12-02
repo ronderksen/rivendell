@@ -1,4 +1,5 @@
 import AllPlayerPrompt from '../../prompts/all-player-prompt';
+import { onPlayerKeepHandOrMulligan } from '../../events';
 
 export default class KeepOrMulliganPrompt extends AllPlayerPrompt {
   activePrompt() {
@@ -24,6 +25,6 @@ export default class KeepOrMulliganPrompt extends AllPlayerPrompt {
     } else if(arg === 'mulligan' && player.mulligan()) {
       this.game.addMessage('{0} has taken a mulligan', player);
     }
-    this.game.raiseEvent('onPlayerKeepHandOrMulligan', { player: player, choice: arg });
+    this.game.raiseEvent(onPlayerKeepHandOrMulligan, { player: player, choice: arg });
   }
 }

@@ -1,6 +1,7 @@
 import uuid from 'uuid';
-import { durations } from '../constants';
+import { durations, spheres } from '../constants';
 import AbilityDsl from './ability-dsl';
+import { CardAction, CardResponse, CardInterrupt } from './abilities';
 
 const validKeywords = [
   'ambush',
@@ -39,6 +40,9 @@ export default class BaseCard {
     this.uuid = uuid.v1();
     this.code = `${cardData.setid}-${cardData.num}`;
     this.name = cardData.name;
+    this.text = cardData.text;
+    this.cost = cardData.cost;
+    this.spheres = [spheres[cardData.sphere.toLowerCase()]];
 
     this.tokens = {};
 
@@ -95,6 +99,22 @@ export default class BaseCard {
       this.menu.push(action.getMenuItem(index));
     }
     this.abilities.actions.push(action);
+  }
+  
+  response(properties) {
+    const response = new CardResponse(this.game, this, properties);
+    
+    if (response.triggered()) {
+      // TODO: prompt user if they want to use response
+    }
+    
+    this.abilities.responses.push(response);
+  }
+  
+  interrupt(properties) {
+    const interrupt = new CardInterrupt(this.game, this, properties);
+    
+    this.abilities.interrupts.push(interrupt);
   }
 
   persistentEffect(properties) {

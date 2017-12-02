@@ -1,3 +1,5 @@
+import Deck from './deck';
+
 export default class Player {
   constructor(id, user, isOwner, game) {
     this.id = id;
@@ -17,5 +19,11 @@ export default class Player {
     this.preparedDeck = deck.prepare(this);
     this.heroes = this.preparedDeck.heroes;
     this.drawDeck = this.preparedDeck.drawCards;
+  }
+  
+  drawCards() {
+    if (this.drawDeck.length > 0) {
+      return this.drawDeck.shift();
+    }
   }
 }

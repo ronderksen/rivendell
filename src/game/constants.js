@@ -37,3 +37,15 @@ export const spheres = nskeymirror({
   'baggins': null,
   'neutral': null,
 }, 'spheres');
+
+export const locations = nskeymirror({
+  'encounterDeck': null,
+  'encounterDiscard': null,
+  'engagementArea': null,
+  'playArea': null,
+  'playerDiscardPile': null,
+  'playerDrawDeck': null,
+  'stagingArea': null,
+  'questDeck': null,
+  'activeLocationArea': null,
+}, 'locations');

@@ -3,8 +3,8 @@ import GamePipeline from './game-pipeline';
 import Player from './player';
 import Spectator from './spectator';
 import Scenario from './scenario';
-import SetupPhase from './phases/setup-phase';
 import phases from './phases';
+import { onBeginRound } from './events';
 
 export default class GameEngine extends EventEmitter {
   constructor(details, options = {}) {
@@ -217,7 +217,7 @@ export default class GameEngine extends EventEmitter {
       SimpleStep
     } = phases;
 
-    this.raiseEvent('onBeginRound');
+    this.raiseEvent(onBeginRound);
     this.queueStep(new ResourcePhase(this));
     this.queueStep(new PlanningPhase(this));
     this.queueStep(new QuestPhase(this));

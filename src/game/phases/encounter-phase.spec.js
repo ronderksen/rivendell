@@ -1,5 +1,6 @@
 import EncounterPhase from './encounter-phase';
 import { cardTypes } from '../constants';
+import { onAtEndOfPhase } from '../events';
 
 jest.mock('./encounter/optional-engagement');
 import OptionalEngagement from './encounter/optional-engagement';
@@ -79,7 +80,7 @@ describe('Class: EncounterPhase', () => {
     pipeline.forEach(step => {
       expect(step.continue).toHaveBeenCalledTimes(1);
     });
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(0);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(0);
   });
@@ -88,7 +89,7 @@ describe('Class: EncounterPhase', () => {
     const game = mockGame(playersFactory(2), [lowThreatEnemy]);
     const encounter = new EncounterPhase(game);
     encounter.continue();
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(1);
     expect(game.getPlayers()[0].engagedEnemies).toEqual([lowThreatEnemy]);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(0);
@@ -98,7 +99,7 @@ describe('Class: EncounterPhase', () => {
     const game = mockGame(playersFactory(2), [highThreatEnemy]);
     const encounter = new EncounterPhase(game);
     encounter.continue();
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(0);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(0);
   });
@@ -107,7 +108,7 @@ describe('Class: EncounterPhase', () => {
     const game = mockGame(playersFactory(2), [{...lowThreatEnemy}, {...lowThreatEnemy}, {...lowThreatEnemy}]);
     const encounter = new EncounterPhase(game);
     encounter.continue();
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(2);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(1);
   });
@@ -116,7 +117,7 @@ describe('Class: EncounterPhase', () => {
     const game = mockGame(playersFactory(2), [{...highThreatEnemy}, {...lowThreatEnemy}, {...lowThreatEnemy}, {...lowThreatEnemy}]);
     const encounter = new EncounterPhase(game);
     encounter.continue();
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(2);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(1);
   });
@@ -136,7 +137,7 @@ describe('Class: EncounterPhase', () => {
     ]);
     const encounter = new EncounterPhase(game);
     encounter.continue();
-    expect(game.raiseEvent).toHaveBeenCalledWith('onAtEndOfPhase');
+    expect(game.raiseEvent).toHaveBeenCalledWith(onAtEndOfPhase);
     expect(game.getPlayers()[0].engagedEnemies).toHaveLength(2);
     expect(game.getPlayers()[1].engagedEnemies).toHaveLength(1);
     expect(game.getPlayers()[2].engagedEnemies).toHaveLength(2);
