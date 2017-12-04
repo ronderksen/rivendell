@@ -50,3 +50,7 @@ export const locations = nskeymirror({
   'activeLocationArea': null,
   'hand': null,
 }, 'locations');
+
+export const traits = nskeymirror({
+  'dwarf': null,
+});

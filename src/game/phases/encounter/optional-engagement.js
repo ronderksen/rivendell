@@ -8,7 +8,7 @@ export default class OptionalEngagementPrompt extends PlayerOrderPrompt {
       menuTitle: 'Select an enemy to engage',
       buttons: this.game
         .getStagingCards()
-        .filter(c => c.type = cardTypes.enemy)
+        .filter(c => c.type === cardTypes.enemy)
         .map(card => ({ arg: card.id, text: card.name })),
     };
   }

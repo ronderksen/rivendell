@@ -29,7 +29,7 @@ export default class EngagementPhase extends Phase {
 
   engageEnemies() {
     const stagedEnemies = this.game.getStagedCards()
-      .filter(c => c.type = cardTypes.enemy)
+      .filter(c => c.type === cardTypes.enemy)
       .sort(byThreatValue);
     let players = this.game.getPlayersInFirstPlayerOrder();
     const ignoredPlayers = new Set();

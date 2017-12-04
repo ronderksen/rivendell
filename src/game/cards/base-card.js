@@ -121,4 +121,8 @@ export default class BaseCard {
     const { persistent } = durations;
     this.abilities.persistentEffects.push(Object.assign({ duration: persistent }, properties));
   }
+
+  isCharacter() {
+    return false;
+  }
 }

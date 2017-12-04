@@ -10,4 +10,10 @@ export default nskeymirror({
   afterCommitToQuest: null,
   onEncounterCardRevealed: null,
   onEnemyEngaged: null,
+  onCharacterLeavesPlay: null,
+  onEnemyAttacking: null,
+  onCharacterAttacking: null,
+  onEnemyKilled: null,
+  onShadowCardDealt: null,
+  onCharacterDamage: null,
 })

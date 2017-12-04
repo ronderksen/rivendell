@@ -1,5 +1,5 @@
 import EventCard from '../../event-card';
-import { cardTypes, locations, } from '../../../constants';
+import {cardTypes, locations,} from '../../../constants';
 
 export default class ALightInTheDark extends EventCard {
   //  Choose an enemy engaged with a player. Return that enemy to the staging area.
@@ -19,7 +19,8 @@ export default class ALightInTheDark extends EventCard {
   cardCondition(card) {
     return (
       card.getType() === cardTypes.enemy &&
-      card.location === locations.engagedArea
+      card.location === locations.engagedArea &&
+      card.target === this.controller
     );
   }
 }

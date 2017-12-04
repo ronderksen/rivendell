@@ -49,6 +49,10 @@ class CharacterCard extends BaseCard {
       this.wounds = 0;
     }
   }
+
+  isCharacter() {
+    return true;
+  }
 }
 
 export default CharacterCard;

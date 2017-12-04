@@ -19,4 +19,14 @@ export default class Effects {
       }
     }
   }
+  modifyProgress(value, quest) {
+    return {
+      apply() {
+        quest.modifyProgress(value);
+      },
+      unapply() {
+        quest.modifyProgress(-value);
+      }
+    };
+  }
 }

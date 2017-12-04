@@ -42,8 +42,6 @@ export default class GameEngine extends EventEmitter {
     }, this.playersAndSpectators);
 
     this.scenario = new Scenario(this.scenarioId);
-    this.encounterCards = this.scenario.getEncounterSets();
-    this.questCards = this.scenario.getQuestCards();
 
     this.setMaxListeners(0);
 
@@ -54,12 +52,12 @@ export default class GameEngine extends EventEmitter {
     this.router.handleError(this, e);
   }
 
-  addMessage() {
-    this.gameChat.addMessage(...arguments);
+  addMessage(...args) {
+    this.gameChat.addMessage(...args);
   }
 
-  addAlert() {
-    this.gameChat.addAlert(...arguments);
+  addAlert(...args) {
+    this.gameChat.addAlert(...args);
   }
 
   get messages() {

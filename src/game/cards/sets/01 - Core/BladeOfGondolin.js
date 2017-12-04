@@ -1,5 +1,5 @@
 import AttachmentCard from '../../attachment-card';
-import { onEnemyIsAttacked, onEnemyKilled } from '../../../events';
+import { onEnemyAttacking, onEnemyKilled } from '../../../events';
 
 export default class BladeOfGondolin extends AttachmentCard {
   setupCardAbilities(ability) {
@@ -8,7 +8,7 @@ export default class BladeOfGondolin extends AttachmentCard {
         const { target } = this.game.currentAttack;
         return target.isEnemy() && target.hasTrait('Orc')
       },
-      recalculateWhen: [onEnemyIsAttacked],
+      recalculateWhen: [onEnemyAttacking],
       effect: ability.effects.modifyAttack(1)
     });
     this.response({
