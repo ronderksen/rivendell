@@ -7,7 +7,7 @@ export default class Thalin extends HeroCard {
       when: {
         [onEncounterCardRevealed]: event => this.isCommittedToQuest() && event.target.isEnemy(),
       },
-      handler: context => context.event.target.addWounds(1)
+      handler: context => context.event.target.modifyWounds(1)
     });
   }
 }

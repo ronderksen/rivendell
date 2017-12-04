@@ -36,7 +36,7 @@ class CharacterCard extends BaseCard {
     this.willPower += value;
   }
 
-  addWounds(value) {
+  modifyWounds(value) {
     this.wounds += value;
     if (this.wounds >= this.hitpoints) {
       // TODO: kill character

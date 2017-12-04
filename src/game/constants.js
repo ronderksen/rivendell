@@ -53,4 +53,5 @@ export const locations = nskeymirror({
 
 export const traits = nskeymirror({
   'dwarf': null,
+  'orc': null,
 });

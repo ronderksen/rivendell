@@ -27,4 +27,8 @@ export default class Player {
     }
     return [];
   }
+  
+  modifyThreatCount(value) {
+    this.threatCount += value;
+  }
 }

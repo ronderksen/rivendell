@@ -3,7 +3,7 @@ import EventCard from '../../event-card';
 export default class BeornsHospitality extends EventCard {
   setupCardAbilities() {
     this.action({
-      choosePlayer: player => player.getHeroes().find(hero => hero.isWounded()),
+      choosePlayer: player => player.getHeroes().find(hero => hero.isWounded()) !== undefined,
       handler: context => {
         context.target.player.getHeroes().forEach(hero => {
           hero.heal(hero.hitpoints);

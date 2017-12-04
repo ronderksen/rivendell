@@ -2,6 +2,7 @@ import nskeymirror from 'nskeymirror';
 
 export default nskeymirror({
   onBeginRound: null,
+  onEndRound: null,
   onPhaseStarted: null,
   onPhaseEnded: null,
   onAtEndOfPhase: null,
@@ -10,6 +11,7 @@ export default nskeymirror({
   afterCommitToQuest: null,
   onEncounterCardRevealed: null,
   onEnemyEngaged: null,
+  onCharacterEntersPlay: null,
   onCharacterLeavesPlay: null,
   onEnemyAttacking: null,
   onCharacterAttacking: null,

@@ -6,7 +6,7 @@ export default class Beorn extends AllyCard {
       target: this,
       handler: context => {
         this.untilEndOfPhase(ability => ({
-          match: context.event.target,
+          match: context.target,
           effect: ability.effects.modifyAttack(5)
         }))
       }
