@@ -3,10 +3,7 @@ import EventCard from '../../event-card';
 export default class BeornsHospitality extends EventCard {
   setupCardAbilities() {
     this.action({
-      target: context => ({
-        activePromptTitle: 'Select a player',
-        // TODO: figure out how to select a player
-      }),
+      choosePlayer: player => player.getHeroes().find(hero => hero.isWounded()),
       handler: context => {
         context.target.player.getHeroes().forEach(hero => {
           hero.heal(hero.hitpoints);

@@ -1,34 +1,59 @@
+import {cardTypes} from '../../constants';
+
 export default class BaseAbility {
   constructor(properties) {
-    this.cost = this.buildCost(properties.cost);
-    this.targets = this.buildTargets(properties);
-    this.chooseOpponentFunc = properties.chooseOpponent;
+    this.setCost(properties.cost);
+    this.setTargets(properties);
+    this.choosePlayerFunc = properties.choosePlayer;
   }
 
-  buildCost(cost) {
-    if(!cost) {
-      return [];
+  setCost(cost) {
+    if (!cost) {
+      this.cost = [];
     }
 
-    if(!Array.isArray(cost)) {
-      return [cost];
+    if (!Array.isArray(cost)) {
+      this.cost = [cost];
     }
 
-    return cost;
+    this.cost = cost;
   }
 
-  buildTargets(properties) {
-    if(properties.target) {
-      return {
+  setTargets(properties) {
+    this.targets = {};
+
+    if (properties.target) {
+      this.targets = {
         target: properties.target
       };
     }
 
-    if(properties.targets) {
-      return properties.targets;
+    if (properties.targets) {
+      this.targets = properties.targets;
     }
+  }
 
-    return {};
+  resolveTarget(context, name, targetProperties) { // eslint-disable-line class-methods-use-this
+    const {cardCondition, otherProperties} = targetProperties;
+    const result = {resolved: false, name, value: null};
+    const promptProperties = {
+      source: context.source,
+      cardCondition: card => cardCondition(card, context),
+      onSelect: (player, card) => {
+        result.resolved = true;
+        result.value = card;
+        return true;
+      },
+      onCancel: () => {
+        result.resolved = true;
+        return true;
+      }
+    };
+    context.game.promptForSelect(context.player, {
+      ...promptProperties,
+      ...otherProperties
+    });
+    return result;
   }
 
   /**
@@ -50,11 +75,11 @@ export default class BaseAbility {
    */
   resolveCosts(context) {
     return this.cost.map(cost => {
-      if(cost.resolve) {
+      if (cost.resolve) {
         return cost.resolve(context);
       }
 
-      return { resolved: true, value: cost.canPay(context) };
+      return {resolved: true, value: cost.canPay(context)};
     });
   }
 
@@ -87,35 +112,34 @@ export default class BaseAbility {
   }
 
   /**
-   * Returns whether the ability requires an opponent to be chosen.
+   * Returns whether the ability requires a player to be chosen.
    */
-  needsChooseOpponent() {
-    return !!this.chooseOpponentFunc;
+
+  needsChoosePlayer() {
+    return !!this.choosePlayerFunc;
   }
 
   /**
-   * Returns whether there are opponents that can be chosen, if the ability
-   * requires that an opponent be chosen.
+   * Returns whether there are players that can be chosen, if the ability
+   * requires that a player be chosen.
    */
-  canResolveOpponents(context) {
-    if(!this.needsChooseOpponent()) {
+  canResolvePlayers(context) {
+    if (!this.needsChoosePlayer()) {
       return true;
     }
 
-    return context.game.getPlayers().some(player => {
-      return player !== context.player && this.canChooseOpponent(player);
-    });
+    return context.game.getPlayers().some(player => player !== context.player && this.canChooseOpponent(player));
   }
 
   /**
-   * Returns whether a specific player can be chosen as an opponent.
+   * Returns whether a specific player can be chosen.
    */
-  canChooseOpponent(opponent) {
-    if(typeof this.chooseOpponentFunc === 'function') {
-      return this.chooseOpponentFunc(opponent);
+  canChoosePlayer(opponent) {
+    if (typeof this.choosePlayerFunc === 'function') {
+      return this.choosePlayerFunc(opponent);
     }
 
-    return this.chooseOpponentFunc === true;
+    return this.choosePlayerFunc === true;
   }
 
   /**
@@ -124,16 +148,14 @@ export default class BaseAbility {
    * @returns {Boolean}
    */
   canResolveTargets(context) {
-    const ValidTypes = ['character', 'attachment', 'location', 'event'];
-    return this.targets.every(target => {
-      return context.game.allCards.any(card => {
-        if(!ValidTypes.includes(card.getType())) {
-          return false;
-        }
+    const {event, ...ValidTypes} = cardTypes;
+    return Object.values(this.targets).every(target => context.game.allCards.some(card => {
+      if (!Object.values(ValidTypes).includes(card.getType())) {
+        return false;
+      }
 
-        return target.cardCondition(card, context);
-      });
-    });
+      return target.cardCondition(card, context);
+    }));
   }
 
   /**
@@ -142,32 +164,7 @@ export default class BaseAbility {
    * @returns {Array} An array of target resolution objects.
    */
   resolveTargets(context) {
-    return this.targets.map((targetProperties, name) => {
-      return this.resolveTarget(context, name, targetProperties);
-    });
-  }
-
-  resolveTarget(context, name, targetProperties) {
-    const { cardCondition, otherProperties } = targetProperties;
-    const result = { resolved: false, name: name, value: null };
-    const promptProperties = {
-      source: context.source,
-      cardCondition: card => cardCondition(card, context),
-      onSelect: (player, card) => {
-        result.resolved = true;
-        result.value = card;
-        return true;
-      },
-      onCancel: () => {
-        result.resolved = true;
-        return true;
-      }
-    };
-    context.game.promptForSelect(context.player, {
-      ...promptProperties,
-      ...otherProperties
-    });
-    return result;
+    return this.targets.map((targetProperties, name) => this.resolveTarget(context, name, targetProperties));
   }
 
   /**
@@ -175,22 +172,22 @@ export default class BaseAbility {
    * should override this method to implement their behavior; by default it
    * does nothing.
    */
-  executeHandler(context) { // eslint-disable-line no-unused-vars
+  executeHandler(context) { // eslint-disable-line no-unused-vars, class-methods-use-this
   }
 
-  isAction() {
+  isAction() { // eslint-disable-line class-methods-use-this
     return true;
   }
 
-  isPlayableEventAbility() {
+  isPlayableEventAbility() { // eslint-disable-line class-methods-use-this
     return false;
   }
 
-  isCardAbility() {
+  isCardAbility() { // eslint-disable-line class-methods-use-this
     return true;
   }
 
-  hasMax() {
+  hasMax() { // eslint-disable-line class-methods-use-this
     return false;
   }
 }

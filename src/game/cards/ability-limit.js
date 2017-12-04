@@ -51,7 +51,7 @@ class RepeatableAbilityLimit extends FixedAbilityLimit {
   }
 }
 
-var AbilityLimit = {
+const AbilityLimit = {
   fixed(max) {
     return new FixedAbilityLimit(max);
   },

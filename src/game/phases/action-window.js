@@ -9,7 +9,7 @@ export default class ActionWindow extends PlayerOrderPrompt {
   }
 
   continue() {
-    let completed = super.continue();
+    const completed = super.continue();
 
     if(!completed) {
       this.game.currentActionWindow = this;

@@ -10,8 +10,6 @@ export default class PlayerOrderPrompt extends UiPrompt {
   }
 
   isComplete() {
-    return this.game.getPlayersInFirstPlayerOrder().every(player => {
-      return this.completionCondition(player);
-    });
+    return this.game.getPlayersInFirstPlayerOrder().every(player => this.completionCondition(player));
   }
 }

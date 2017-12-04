@@ -74,7 +74,7 @@ export default class BaseCard {
       if (validKeywords.indexOf(keyword) > -1) {
         acc.simple[keyword] = true;
       } else {
-        validValueKeywords.find(valueKeyword => {
+        validValueKeywords.forEach(valueKeyword => {
           const match = keyword.match(new RegExp(`${valueKeyword} (\\d)?`));
           if (match) {
             acc.valued[valueKeyword] = parseInt(match[1], 10);
@@ -89,7 +89,7 @@ export default class BaseCard {
     });
   }
 
-  setupCardAbilities(AbilityDsl) {}
+  setupCardAbilities(abilityDsl) {} // eslint-disable-line no-unused-vars, class-methods-use-this
 
   action(properties) {
     const action = new CardAction(this.game, this, properties);
@@ -100,20 +100,20 @@ export default class BaseCard {
     }
     this.abilities.actions.push(action);
   }
-  
+
   response(properties) {
     const response = new CardResponse(this.game, this, properties);
-    
+
     if (response.triggered()) {
       // TODO: prompt user if they want to use response
     }
-    
+
     this.abilities.responses.push(response);
   }
-  
+
   interrupt(properties) {
     const interrupt = new CardInterrupt(this.game, this, properties);
-    
+
     this.abilities.interrupts.push(interrupt);
   }
 

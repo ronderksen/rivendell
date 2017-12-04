@@ -9,4 +9,14 @@ export default class Effects {
       }
     }
   }
+  modifyDefense(value) {
+    return {
+      apply(card) {
+        card.modifyDefense(value, true);
+      },
+      unapply(card) {
+        card.modifyDefense(-value, false);
+      }
+    }
+  }
 }

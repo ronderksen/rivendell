@@ -1,4 +1,4 @@
-import { cardTypes, spheres } from '../constants';
+import { spheres } from '../constants';
 import CharacterCard from './character-card';
 
 class HeroCard extends CharacterCard {

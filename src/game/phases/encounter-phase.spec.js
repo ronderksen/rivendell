@@ -4,18 +4,21 @@ import { onAtEndOfPhase } from '../events';
 
 jest.mock('./encounter/optional-engagement');
 import OptionalEngagement from './encounter/optional-engagement';
+
 OptionalEngagement.mockImplementation(() => ({
   continue: jest.fn().mockReturnValue(true)
 }));
 
 jest.mock('./action-window');
 import ActionWindow from './action-window';
+
 ActionWindow.mockImplementation(() => ({
   continue: jest.fn().mockReturnValue(true)
 }));
 
 jest.mock('./simple-step');
 import SimpleStep from './simple-step';
+
 SimpleStep.mockImplementation((game, continueFunc) => ({
   continue: jest.fn().mockReturnValue(continueFunc())
 }));

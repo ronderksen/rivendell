@@ -197,9 +197,7 @@ export default class GameEngine extends EventEmitter {
 
   gatherAllCards() {
     return this.getPlayers()
-      .reduce((cards, player) => {
-        return cards.concat(player.preparedDeck.allCards);
-      }, [])
+      .reduce((cards, player) => cards.concat(player.preparedDeck.allCards), [])
       .concat(
         this.scenario.encounterCards,
       );
@@ -237,6 +235,6 @@ export default class GameEngine extends EventEmitter {
   }
 
   pushAbilityContext(source, card, stage) {
-    this.abilityCardStack.push({ source: source, card: card, stage: stage });
+    this.abilityCardStack.push({ source, card, stage });
   }
 }

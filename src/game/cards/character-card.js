@@ -12,12 +12,42 @@ class CharacterCard extends BaseCard {
     this.attack = cardData.attack;
     this.defense = cardData.defense;
     this.hitPoints = cardData.hitPoints;
-    this.damage = 0;
+    this.wounds = 0;
     this.spheres = [spheres[cardData.sphere.toLowerCase()]];
 
     this.isCommittedToQuest = false;
     this.isAttacking = false;
     this.isDefending = false;
+  }
+
+  modifyAttack(value) {
+    this.attack += value;
+  }
+
+  modifyDefense(value) {
+    this.defense += value;
+  }
+
+  modifyHitpoints(value) {
+    this.hitpoints += value;
+  }
+
+  modifyWillpower(value) {
+    this.willPower += value;
+  }
+
+  addWounds(value) {
+    this.wounds += value;
+    if (this.wounds >= this.hitpoints) {
+      // TODO: kill character
+    }
+  }
+
+  heal(value) {
+    this.wounds -= value;
+    if (this.wounds < 0) {
+      this.wounds = 0;
+    }
   }
 }
 

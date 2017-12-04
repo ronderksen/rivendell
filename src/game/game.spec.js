@@ -15,6 +15,7 @@ GamePipeline.mockImplementation(() => ({
 jest.mock('./player');
 import Player from './player';
 import MockDeckFactory from './test-helpers/MockDeckFactory';
+
 const preparedDeck = MockDeckFactory();
 
 Player.mockImplementation((id, user, isOwner, game) => ({
@@ -30,6 +31,7 @@ Player.mockImplementation((id, user, isOwner, game) => ({
 
 jest.mock('./spectator');
 import Spectator from './spectator';
+
 Spectator.mockImplementation((id, user, game) => ({
   constructor: Spectator,
   id,
@@ -41,6 +43,7 @@ Spectator.mockImplementation((id, user, game) => ({
 
 jest.mock('./scenario');
 import Scenario from './scenario';
+
 Scenario.mockImplementation(() => ({
   getEncounterSets: jest.fn().mockReturnValue([]),
   getQuestCards: jest.fn().mockReturnValue([]),

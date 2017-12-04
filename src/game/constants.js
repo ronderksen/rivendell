@@ -48,4 +48,5 @@ export const locations = nskeymirror({
   'stagingArea': null,
   'questDeck': null,
   'activeLocationArea': null,
+  'hand': null,
 }, 'locations');

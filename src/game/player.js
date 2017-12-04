@@ -20,10 +20,11 @@ export default class Player {
     this.heroes = this.preparedDeck.heroes;
     this.drawDeck = this.preparedDeck.drawCards;
   }
-  
-  drawCards() {
+
+  drawCards(count) {
     if (this.drawDeck.length > 0) {
-      return this.drawDeck.shift();
+      return this.drawDeck.splice(0, count);
     }
+    return [];
   }
 }

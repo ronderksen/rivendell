@@ -20,6 +20,6 @@ export default class SelectFirstPlayerPrompt extends AllPlayerPrompt {
   onMenuCommand(player, arg) {
     const selectedPlayer = this.game.getPlayers().find(p => p.id === arg);
     this.game.addMessage(`${player.name} has selected ${selectedPlayer.name} to go first.`);
-    this.game.raiseEvent(onFirstPlayerSelect, { player: player, choice: arg });
+    this.game.raiseEvent(onFirstPlayerSelect, { player, choice: arg });
   }
 }

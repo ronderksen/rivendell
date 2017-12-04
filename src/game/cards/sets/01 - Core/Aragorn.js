@@ -3,7 +3,7 @@ import { phases } from '../../../constants';
 import { afterCommitToQuest } from '../../../events';
 
 export default class Aragorn extends HeroCard {
-  setupCardAbilities() {
+  setupCardAbilities(ability) {
     // After Aragorn commits to a quest, spend 1 resource from his resource pool to ready him.
     this.response({
       when: {

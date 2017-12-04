@@ -71,7 +71,7 @@ export default class GamePipeline {
 
   handleMenuCommand(player, arg, method) {
     if(this.pipeline.length > 0) {
-      var step = this.getCurrentStep();
+      const step = this.getCurrentStep();
       if(step.onMenuCommand(player, arg, method) !== false) {
         return true;
       }
@@ -108,7 +108,7 @@ export default class GamePipeline {
   }
 
   getDebugInfoForStep(step) {
-    let name = step.constructor.name;
+    const name = step.constructor.name;
     if(step.pipeline) {
       return {
         [name]: step.pipeline.getDebugInfo()
