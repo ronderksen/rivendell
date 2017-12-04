@@ -1,4 +1,5 @@
 import EventCard from '../../event-card';
+import { cardTypes } from "../../../constants";
 
 export default class BladeMastery extends EventCard {
   setupCardAbilities() {
@@ -11,5 +12,9 @@ export default class BladeMastery extends EventCard {
         }));
       }
     })
+  }
+
+  cardCondition(card) {
+    return card.getType() === cardTypes.hero;
   }
 }

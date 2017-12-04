@@ -5,7 +5,7 @@ export default class BladeOfGondolin extends AttachmentCard {
   setupCardAbilities(ability) {
     this.whileAttached({
       condition: () => {
-        const {target} = this.game.currentAttack;
+        const { target } = this.game.currentAttack;
         return target.isEnemy() && target.hasTrait('Orc')
       },
       recalculateWhen: [onEnemyIsAttacked],
