@@ -5,7 +5,7 @@ export default class Gandalf extends AllyCard {
   setCardAbilities() {
     this.response({
       when: {
-        [onCharacterEntersPlay]: card => card === this,
+        [onCharacterEntersPlay]: event => event.target === this,
       },
       handler() {
         this.game.promptWithMenu(this.controller, this, {

@@ -7,20 +7,20 @@ function getDirectories(srcpath) {
 }
 
 function loadFiles(directory) {
+  const cards = {};
   const fullPath = path.join(__dirname, directory);
   const files = fs.readdirSync(fullPath).filter(file => !fs.statSync(path.join(fullPath, file)).isDirectory());
 
-  for(const file of files) {
-    const card = require(`./${  directory  }/${  file}`);
+  files.forEach(file => {
+    const card = require(`./${directory}/${file}`); // eslint-disable-line
 
     cards[card.code] = card;
-  }
+  });
+  return cards;
 }
 
 function loadCards(directory) {
-  let cards = {};
-
-  loadFiles(directory);
+  let cards = loadFiles(directory);
 
   getDirectories(directory).forEach(dir => {
     cards = Object.assign(cards, loadCards(path.join(directory, dir)));
@@ -29,11 +29,9 @@ function loadCards(directory) {
   return cards;
 }
 
-let cards = {};
 const directories = getDirectories('.');
 
-for(const directory of directories) {
-  cards = Object.assign(cards, loadCards(directory));
-}
-
-module.exports = cards;
+export default directories.reduce(
+  (cards, directory) => Object.assign(cards, loadCards(directory)),
+  {}
+);

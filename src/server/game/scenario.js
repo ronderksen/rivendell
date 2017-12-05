@@ -24,4 +24,13 @@ export default class Scenario {
 
     return cards.filter(predicate);
   }
+
+  getActiveLocation(questAllowed) {
+    if (this.activeLocation) {
+      return this.activeLocation;
+    } else if (questAllowed) {
+      return this.activeQuestCard;
+    }
+    return null;
+  }
 }

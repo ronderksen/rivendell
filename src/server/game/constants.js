@@ -26,6 +26,7 @@ export const cardTypes = nskeymirror({
   location: null,
   treachery: null,
   quest: null,
+  condition: null,
 }, 'cardTypes');
 
 export const spheres = nskeymirror({

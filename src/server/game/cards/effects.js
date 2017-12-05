@@ -19,13 +19,13 @@ export default class Effects {
       }
     }
   }
-  modifyProgress(value, quest) {
+  modifyProgress(value) {
     return {
-      apply() {
-        quest.modifyProgress(value);
+      apply(card) {
+        card.modifyProgress(value);
       },
-      unapply() {
-        quest.modifyProgress(-value);
+      unapply(card) {
+        card.modifyProgress(-value);
       }
     };
   }
