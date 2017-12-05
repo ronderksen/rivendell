@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import PageContainer from './pages/PageContainer';
-import createStateStore from './store';
+import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    const store = createStateStore();
-    return (
-      <Provider store={store}>
-        <Router>
-          <PageContainer />
-        </Router>
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div>TBD</div>
+    </Router>
+  )
 }
 
 export default App;
