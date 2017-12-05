@@ -2,6 +2,8 @@ import EventCard from '../../event-card';
 import { cardTypes } from "../../../constants";
 
 export default class BladeMastery extends EventCard {
+  static code = '01-032';
+
   setupCardAbilities() {
     this.action({
       target: card => this.cardCondition(card),

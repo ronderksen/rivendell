@@ -3,6 +3,8 @@ import {cardTypes} from "../../../constants";
 import { onEncounterCardRevealed } from '../../../events';
 
 export default class Eleanor extends HeroCard {
+  static code = '01-008';
+
   setCardAbilities(ability) {
     // Exhaust Eleanor to cancel the "when revealed" effects of a treachery card
     // just revealed by the encounter deck. Then, discard that card, and replace

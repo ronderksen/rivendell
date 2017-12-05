@@ -2,6 +2,8 @@ import AllyCard from "../../ally-card";
 import {cardTypes} from "../../../constants";
 
 export default class DaughterOfTheNimrodel extends AllyCard {
+  static code = '01-056';
+
   setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.exhaustSelf(),

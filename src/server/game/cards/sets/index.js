@@ -12,7 +12,7 @@ function loadFiles(directory) {
   const files = fs.readdirSync(fullPath).filter(file => !fs.statSync(path.join(fullPath, file)).isDirectory());
 
   files.forEach(file => {
-    const card = require(`./${directory}/${file}`); // eslint-disable-line
+    const card = require(`./${directory}/${file}`).default; // eslint-disable-line
 
     cards[card.code] = card;
   });

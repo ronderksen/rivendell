@@ -1,6 +1,8 @@
 import AllyCard from '../../ally-card';
 
 export default class Beorn extends AllyCard {
+  static code = '01-031';
+
   setupCardAbilities() {
     this.action({
       target: this,

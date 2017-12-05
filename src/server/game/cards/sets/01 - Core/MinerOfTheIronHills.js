@@ -4,6 +4,7 @@ import { cardTypes } from '../../../constants';
 
 export default class MinerOfTheIronHills extends AllyCard {
   static code = '01-002';
+
   setCardAbilities() {
     this.response({
       when:{

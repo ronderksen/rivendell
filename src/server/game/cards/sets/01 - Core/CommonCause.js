@@ -2,6 +2,8 @@ import EventCard from "../../event-card";
 import {cardTypes} from "../../../constants";
 
 export default class CommonCause extends EventCard {
+  static code = '01-021';
+
   setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.exhaustHero(),

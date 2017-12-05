@@ -2,6 +2,8 @@ import HeroCard from '../../hero-card';
 import {onCharacterDamage} from '../../../events';
 
 export default class Gloin extends HeroCard {
+  static code = '01-003';
+
   setCardAbilities() {
     this.response({
       when: {

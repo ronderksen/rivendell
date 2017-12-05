@@ -2,6 +2,8 @@ import AllyCard from '../../ally-card';
 import { onCharacterEntersPlay, onEndRound } from '../../../events';
 
 export default class Gandalf extends AllyCard {
+  static code = '01-073';
+
   setCardAbilities() {
     this.response({
       when: {

@@ -2,6 +2,7 @@ import EventCard from '../../event-card';
 import {cardTypes, locations,} from '../../../constants';
 
 export default class ALightInTheDark extends EventCard {
+  static code = '01-052';
   //  Choose an enemy engaged with a player. Return that enemy to the staging area.
   setupCardAbilities() {
     this.action({
