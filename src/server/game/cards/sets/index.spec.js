@@ -2,7 +2,7 @@ import uuid from 'uuid';
 import PlayerCards from './index';
 
 jest.mock('uuid');
-uuid.v1 = jest.fn().mockReturnValue('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+uuid.v1 = jest.fn().mockReturnValue('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
 describe('PlayerCards', () => {
   it('should load the player cards', () => {
