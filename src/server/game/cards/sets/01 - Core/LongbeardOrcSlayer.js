@@ -5,7 +5,7 @@ import {cardTypes, traits} from "../../../constants";
 export default class LongbeardOrcSlayer extends AllyCard {
   static code = '116-018';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.response({
       when: {
         [onCharacterEntersPlay]: event => event.target === this,

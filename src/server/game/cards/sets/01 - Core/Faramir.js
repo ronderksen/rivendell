@@ -3,7 +3,7 @@ import AllyCard from '../../ally-card';
 export default class Faramir extends AllyCard {
   static code = '116-014';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.exhaustSelf(),
       choosePlayer: true,

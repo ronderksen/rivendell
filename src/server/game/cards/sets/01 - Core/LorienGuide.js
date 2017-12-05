@@ -4,7 +4,7 @@ import { afterCommitToQuest } from '../../../events';
 export default class LorienGuide extends AllyCard {
   static code = '116-044';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.response({
       when: {
         [afterCommitToQuest]: (event) => event.target === this,

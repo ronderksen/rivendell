@@ -5,7 +5,7 @@ import {cardTypes} from "../../../constants";
 export default class Theodred extends HeroCard {
   static code = '116-002';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.response({
       when: {
         [afterCommitToQuest]: event => event.target === this,

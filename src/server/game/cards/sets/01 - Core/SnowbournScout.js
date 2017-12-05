@@ -5,7 +5,7 @@ import { cardTypes } from '../../../constants';
 export default class SnowbournScout extends AllyCard {
   static code = '116-016';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.response({
       when: {
         [onCharacterEntersPlay]: event => event.target === this,

@@ -4,7 +4,7 @@ import { onCharacterEntersPlay, onEndRound } from '../../../events';
 export default class Gandalf extends AllyCard {
   static code = '116-073';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.response({
       when: {
         [onCharacterEntersPlay]: event => event.target === this,

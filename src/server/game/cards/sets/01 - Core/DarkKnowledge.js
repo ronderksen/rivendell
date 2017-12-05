@@ -1,5 +1,6 @@
 import AttachmentCard from "../../attachment-card";
 import {onShadowCardDealt} from '../../../events';
+import {cardTypes} from "../../../constants";
 
 export default class DarkKnowledge extends AttachmentCard {
   static code = '116-071';
@@ -22,5 +23,9 @@ export default class DarkKnowledge extends AttachmentCard {
         this.game.addMessage(`${this.controller.name} uses ${this.name} to look at ${context.target.name}'s shadow card`);
       }
     });
+  }
+
+  canAttach(player, card) {
+    return card.getType() === cardTypes.hero;
   }
 }

@@ -3,7 +3,7 @@ import AllyCard from '../../ally-card';
 export default class WanderingTook extends AllyCard {
   static code = '116-043';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.modifyThreatCount(-3),
       choosePlayer: true,

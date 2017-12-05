@@ -4,7 +4,7 @@ import { onEncounterCardRevealed } from '../../../events';
 export default class Thalin extends HeroCard {
   static code = '116-006';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.forcedinterrupt({
       when: {
         [onEncounterCardRevealed]: event => this.isCommittedToQuest() && event.target.isEnemy(),

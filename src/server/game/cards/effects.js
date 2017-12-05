@@ -29,4 +29,37 @@ export default class Effects {
       }
     };
   }
+
+  modifyResources(value) {
+    return {
+      apply(card) {
+        card.modifyResources(value);
+      },
+      unapply(card) {
+        card.modifyResources(-value);
+      }
+    }
+  }
+
+  modifyParentResources(value) {
+    return {
+      apply(card) {
+        card.parent.modifyResources(value);
+      },
+      unapply(card) {
+        card.parent.modifyResources(-value);
+      }
+    }
+  }
+
+  canNotAttack() {
+    return {
+      apply(card) {
+        card.addAttackRestriction('any');
+      },
+      unapply(card) {
+        card.removeAttackRestriction('any');
+      }
+    }
+  }
 }

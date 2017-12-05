@@ -5,7 +5,7 @@ import { onCharacterAttacking } from '../../../events';
 export default class Dunhere extends HeroCard {
   static code = '116-009';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.persistentEffect({
       when: {
         [onCharacterAttacking]: () => true,

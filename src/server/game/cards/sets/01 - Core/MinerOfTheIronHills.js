@@ -5,7 +5,7 @@ import { cardTypes } from '../../../constants';
 export default class MinerOfTheIronHills extends AllyCard {
   static code = '116-002';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.response({
       when:{
         [onCharacterEntersPlay]: event => event.target === this

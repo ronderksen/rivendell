@@ -4,7 +4,7 @@ import { onDeclareDefender } from '../../../events';
 export default class GondorianSpearman extends AllyCard {
   static code = '116-029';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.response({
       when: {
         [onDeclareDefender]: event => event.target === this,

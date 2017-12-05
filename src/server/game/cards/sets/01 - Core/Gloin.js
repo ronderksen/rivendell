@@ -4,7 +4,7 @@ import {onCharacterDamage} from '../../../events';
 export default class Gloin extends HeroCard {
   static code = '116-003';
 
-  setCardAbilities() {
+  setupCardAbilities() {
     this.response({
       when: {
         [onCharacterDamage]: event => event.target === this,

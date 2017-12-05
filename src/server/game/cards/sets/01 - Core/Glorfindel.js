@@ -3,7 +3,7 @@ import HeroCard from '../../hero-card';
 export default class Glorfindel extends HeroCard {
   static code = '116-011';
 
-  setCardAbilities(ability) {
+  setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.payResource(),
       target: {
