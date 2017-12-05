@@ -2,7 +2,7 @@ import AllyCard from '../../ally-card';
 import { onDeclareDefender } from '../../../events';
 
 export default class GondorianSpearman extends AllyCard {
-  static code = '01-029';
+  static code = '116-029';
 
   setCardAbilities() {
     this.response({

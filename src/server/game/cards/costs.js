@@ -1,8 +1,7 @@
 import ExhaustCost from './costs/exhaust-cost';
 import SelfCost from './costs/self-cost';
-import CostBuilders from './costs/cost-builders';
 // import ParentCost from './costs/parent-cost';
-import { locations } from '../constants';
+import { cardTypes, locations } from '../constants';
 
 const Costs = {
   all(...costs) {
@@ -15,6 +14,7 @@ const Costs = {
       }
     };
   },
+
   exhaustSelf() {
     const action = new ExhaustCost();
     return new SelfCost(action);
@@ -35,7 +35,14 @@ const Costs = {
   },
 
   payResource(amount, options) {
-    return CostBuilders.discardResources(amount, options).self();
+    return {
+      canPay(context) {
+        return context.source.getType() === cardTypes.hero && context.source.hasResources(amount)
+      },
+      pay(context) {
+        context.source.payResource(amount, options);
+      },
+    }
   },
 
   playEvent() {

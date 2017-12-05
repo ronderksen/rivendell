@@ -1,9 +1,3 @@
-import CardAction from './action';
-import CardResponse from './response';
-import CardInterrupt from './interrupt';
-
-export default {
-  CardAction,
-  CardResponse,
-  CardInterrupt
-};
+export { default as CardAction } from './action';
+export { default as CardResponse } from './response';
+export { default as CardInterrupt } from './interrupt';

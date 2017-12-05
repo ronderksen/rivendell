@@ -53,22 +53,22 @@ export default class BaseCard {
       playActions: [],
     };
 
-    this.parseKeywords(cardData.keywords || '');
-    this.parseTraits(cardData.traits || '');
+    this.parseKeywords(cardData.text || '');
+    this.parseTraits(cardData.trait || '');
     this.setupCardAbilities(AbilityDsl);
   }
 
   parseTraits(traits) {
     const firstLine = traits.split('\n')[0];
-    this.traits = firstLine.split('.').reduce((acc, trait) => ({
+    this.traits = firstLine.split('.').filter(Boolean).reduce((acc, trait) => ({
       ...acc,
-      [trait]: acc[trait] ? acc[trait] + 1 : 1,
+      [trait]: true,
     }), {});
   }
 
-  parseKeywords(keywords = '') {
-    const firstLine = keywords.split('\n')[0];
-    const potentialKeywords = firstLine.split('.').map(k => k.toLowerCase().trim());
+  parseKeywords(text = '') {
+    const keywords = text.split('<br />')[0];
+    const potentialKeywords = keywords.split('.').map(k => k.toLowerCase().trim());
 
     this.keywords = potentialKeywords.reduce((acc, keyword) => {
       if (validKeywords.indexOf(keyword) > -1) {

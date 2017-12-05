@@ -3,7 +3,7 @@ import {onCharacterEntersPlay} from "../../../events";
 import { cardTypes } from '../../../constants';
 
 export default class MinerOfTheIronHills extends AllyCard {
-  static code = '01-002';
+  static code = '116-002';
 
   setCardAbilities() {
     this.response({

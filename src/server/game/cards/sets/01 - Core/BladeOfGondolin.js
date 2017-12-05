@@ -2,7 +2,7 @@ import AttachmentCard from '../../attachment-card';
 import { onEnemyAttacking, onEnemyKilled } from '../../../events';
 
 export default class BladeOfGondolin extends AttachmentCard {
-  static code = '01-039';
+  static code = '116-039';
 
   setupCardAbilities(ability) {
     this.whileAttached({

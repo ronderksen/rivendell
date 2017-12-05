@@ -2,7 +2,7 @@ import AttachmentCard from '../../attachment-card';
 import {spheres} from "../../../constants";
 
 export default class CelebriansStone extends AttachmentCard {
-  static code = '01-029';
+  static code = '116-029';
 
   setupCardAbilities(ability) {
     this.whileAttached({

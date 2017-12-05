@@ -1,7 +1,7 @@
 import EventCard from '../../event-card';
 
 export default class BeornsHospitality extends EventCard {
-  static code = '01-068';
+  static code = '116-068';
 
   setupCardAbilities() {
     this.action({

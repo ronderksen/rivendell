@@ -1,7 +1,7 @@
 import AllyCard from '../../ally-card';
 
 export default class WanderingTook extends AllyCard {
-  static code = '01-043';
+  static code = '116-043';
 
   setCardAbilities(ability) {
     this.action({

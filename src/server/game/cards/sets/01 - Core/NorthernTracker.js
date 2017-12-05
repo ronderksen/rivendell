@@ -3,7 +3,7 @@ import {afterCommitToQuest} from "../../../events";
 import { cardTypes, locations } from '../../../constants';
 
 export default class NorthernTracker extends AllyCard {
-  static code = '01-045';
+  static code = '116-045';
 
   setCardAbilities() {
     this.response({

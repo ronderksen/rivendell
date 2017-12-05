@@ -3,7 +3,7 @@ import { onCharacterEntersPlay } from '../../../events';
 import { cardTypes } from '../../../constants';
 
 export default class SonOfArnor extends AllyCard {
-  static code = '01-015';
+  static code = '116-015';
 
   setCardAbilities() {
     this.response({

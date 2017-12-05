@@ -1,7 +1,7 @@
 import HeroCard from '../../hero-card';
 
 export default class Eowyn extends HeroCard {
-  static code = '01-007';
+  static code = '116-007';
 
     setCardAbilities(ability) {
         this.action({

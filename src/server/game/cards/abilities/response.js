@@ -4,4 +4,8 @@ export default class CardResponse {
     this.card = card;
     this.properties = properties;
   }
+
+  triggered() {
+    return false;
+  }
 }

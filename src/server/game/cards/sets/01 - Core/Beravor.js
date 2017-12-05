@@ -1,7 +1,7 @@
 import HeroCard from '../../hero-card';
 
 export default class Beravor extends HeroCard {
-  static code = '01-012';
+  static code = '116-012';
 
   setupCardAbilities(ability) {
     this.action({

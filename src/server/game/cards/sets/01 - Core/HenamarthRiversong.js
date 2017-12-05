@@ -1,7 +1,7 @@
 import AllyCard from '../../ally-card';
 
 export default class HenamarthRiversong extends AllyCard {
-  static code = '01-060';
+  static code = '116-060';
 
   setCardAbilities(ability) {
     this.action({

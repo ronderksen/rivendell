@@ -1,7 +1,7 @@
 import AllyCard from '../../ally-card';
 
 export default class Gleowine extends AllyCard {
-  static code = '01-062';
+  static code = '116-062';
 
   setCardAbilities() {
     this.action({

@@ -8,6 +8,9 @@ function getDirectories(srcpath) {
 
 function loadFiles(directory) {
   const cards = {};
+  if (directory.startsWith('__')) {
+    return {};
+  }
   const fullPath = path.join(__dirname, directory);
   const files = fs.readdirSync(fullPath).filter(file => !fs.statSync(path.join(fullPath, file)).isDirectory());
 

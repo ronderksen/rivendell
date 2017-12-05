@@ -3,7 +3,7 @@ import {locations} from "../../../constants";
 import { onCharacterAttacking } from '../../../events';
 
 export default class Dunhere extends HeroCard {
-  static code = '01-009';
+  static code = '116-009';
 
   setCardAbilities(ability) {
     this.persistentEffect({

@@ -2,7 +2,7 @@ import HeroCard from '../../hero-card';
 import { onEnemyKilled } from '../../../events';
 
 export default class Legolas extends HeroCard {
-  static code = '01-005';
+  static code = '116-005';
 
   setCardAbilities(ability) {
     this.response({

@@ -2,7 +2,7 @@ import AttachmentCard from "../../attachment-card";
 import {onShadowCardDealt} from '../../../events';
 
 export default class DarkKnowledge extends AttachmentCard {
-  static code = '01-071';
+  static code = '116-071';
 
   setupCardAbilities(ability) {
     this.whileAttached({

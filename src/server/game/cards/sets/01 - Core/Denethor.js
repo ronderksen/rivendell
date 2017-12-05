@@ -1,7 +1,7 @@
 import HeroCard from '../../hero-card';
 
 export default class Denethor extends HeroCard {
-  static code = '01-010';
+  static code = '116-010';
 
   setCardAbilities(ability) {
     this.action({

@@ -3,7 +3,7 @@ import { onCharacterEntersPlay } from '../../../events';
 import { cardTypes } from '../../../constants';
 
 export default class SnowbournScout extends AllyCard {
-  static code = '01-016';
+  static code = '116-016';
 
   setCardAbilities(ability) {
     this.response({

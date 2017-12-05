@@ -4,7 +4,7 @@ import {cardTypes, locations} from "../../../constants";
 
 // TODO: improve implementation
 export default class EreborHammersmith extends AllyCard {
-  static code = '01-059';
+  static code = '116-059';
 
   setCardAbilities() {
     const { attachment } = cardTypes;

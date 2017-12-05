@@ -5,13 +5,12 @@ class CharacterCard extends BaseCard {
   constructor(owner, cardData) {
     super(owner, cardData);
 
-    this.type = cardTypes.hero;
-    this.isUnique = cardData.isUnique;
-    this.startingThreat = cardData.startingThreat;
-    this.willPower = cardData.willPower;
-    this.attack = cardData.attack;
-    this.defense = cardData.defense;
-    this.hitPoints = cardData.hitPoints;
+    this.isUnique = cardData.unique === 'Yes';
+    this.startingThreat = parseInt(cardData.th, 10);
+    this.willPower = parseInt(cardData.wt, 10);
+    this.attack = parseInt(cardData.atk, 10);
+    this.defense = parseInt(cardData.def, 10);
+    this.hitPoints = parseInt(cardData.hp, 10);
     this.wounds = 0;
     this.spheres = [spheres[cardData.sphere.toLowerCase()]];
 

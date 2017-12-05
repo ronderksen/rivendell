@@ -1,7 +1,12 @@
-import { spheres } from '../constants';
+import {cardTypes, spheres} from '../constants';
 import CharacterCard from './character-card';
 
 class HeroCard extends CharacterCard {
+  constructor(owner, cardData) {
+    super(owner, cardData);
+
+    this.type = cardTypes.hero;
+  }
   addResources(amount = 1) {
       this.resources += amount;
   }

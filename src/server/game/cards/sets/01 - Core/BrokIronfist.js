@@ -3,7 +3,7 @@ import { cardTypes, traits } from '../../../constants';
 import { onCharacterLeavesPlay } from '../../../events';
 
 export default class BrokIronfist extends AllyCard {
-  static code = '01-019';
+  static code = '116-019';
   
   setupCardAbilities() {
     this.response({
