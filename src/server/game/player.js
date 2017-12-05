@@ -1,4 +1,5 @@
 import Deck from './deck';
+import { onCardReadied, onCardExhausted } from './events';
 
 export default class Player {
   constructor(id, user, isOwner, game) {
@@ -27,8 +28,32 @@ export default class Player {
     }
     return [];
   }
-  
+
   modifyThreatCount(value) {
     this.threatCount += value;
+  }
+
+  readyCard(card) {
+    if (!card.exhausted) {
+      return;
+    }
+
+    this.game.applyGameAction('ready', card, c => {
+      c.ready();
+
+      this.game.raiseEvent(onCardReadied, { player: this, card });
+    });
+  }
+
+  exhaustCard(card) {
+    if (card.exhausted) {
+      return;
+    }
+
+    this.game.applyGameAction('exhaust', card, c => {
+      c.exhaust();
+
+      this.game.raiseEvent(onCardExhausted, { player: this, card });
+    });
   }
 }

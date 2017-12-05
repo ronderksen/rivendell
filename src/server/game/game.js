@@ -235,4 +235,29 @@ export default class GameEngine extends EventEmitter {
   pushAbilityContext(source, card, stage) {
     this.abilityCardStack.push({ source, card, stage });
   }
+
+  applyGameAction(actionType, cards, func) {
+    if(!Array.isArray(cards)) {
+      cards = [cards]; // eslint-disable-line no-param-reassign
+    }
+
+    const [allowed, disallowed] = cards.reduce((acc, card) => {
+      if (card.allowGameAction(actionType)) {
+        acc[0].push(card)
+      } else {
+        acc[1].push(card);
+      }
+      return acc;
+    }, [[], []]);
+
+    if(disallowed.length === 0) {
+      // TODO: add a cannot / immunity message.
+    }
+
+    if(allowed.length === 0) {
+      return;
+    }
+
+    func(allowed);
+  }
 }

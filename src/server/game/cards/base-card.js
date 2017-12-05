@@ -43,6 +43,7 @@ export default class BaseCard {
     this.text = cardData.text;
     this.cost = cardData.cost;
     this.spheres = [spheres[cardData.sphere.toLowerCase()]];
+    this.exhausted = false;
 
     this.tokens = {};
 
@@ -124,5 +125,13 @@ export default class BaseCard {
 
   isCharacter() {
     return false;
+  }
+
+  exhaust() {
+    this.exhausted = true;
+  }
+
+  ready() {
+    this.exhausted = false;
   }
 }
