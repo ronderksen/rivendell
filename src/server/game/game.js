@@ -1,4 +1,5 @@
 import EventEmitter from 'events';
+import GameChat from './game-chat';
 import GamePipeline from './game-pipeline';
 import Player from './player';
 import Spectator from './spectator';
@@ -9,6 +10,7 @@ import { onBeginRound } from './events';
 export default class GameEngine extends EventEmitter {
   constructor(details, options = {}) {
     super();
+    this.gameChat = new GameChat();
     this.playersAndSpectators = {};
     this.playerHeroes = {};
     this.playerCards = {};

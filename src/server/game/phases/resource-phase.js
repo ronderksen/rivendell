@@ -5,20 +5,21 @@ import ActionWindow from './action-window';
 export default class ResourcePhase extends Phase {
   constructor(game) {
     super(game, 'resource');
-    
+
     this.initialize([
-      new SimpleStep(game, () => this.addResourcesToHeroes()),
-      new SimpleStep(game, () => this.playerDrawCards()),
+      new SimpleStep(this.game, () => this.addResourcesToHeroes()),
+      new SimpleStep(this.game, () => this.playerDrawCards()),
+      new ActionWindow(this.game, 'After resource phase', 'Resource'),
     ])
   }
-  
+
   addResourcesToHeroes() {
-    game.getHeroes().forEach(hero => {
+    this.game.getHeroes().forEach(hero => {
       hero.addResources();
     });
   }
-  
+
   playerDrawCards() {
-    game.getPlayers().forEach(player => player.drawCards())
+    this.game.getPlayers().forEach(player => player.drawCards())
   }
-} 
+}
