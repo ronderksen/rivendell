@@ -9,7 +9,7 @@ export default class LorienGuide extends AllyCard {
       when: {
         [afterCommitToQuest]: (event) => event.target === this,
       },
-      target: this.game.getActiveLocation(),
+      target: this.game.scenario.getActiveLocation(),
       effect: ability.effects.modifyProgress(1)
     })
   }

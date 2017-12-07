@@ -6,10 +6,12 @@ export default class SelfPreservation extends AttachmentCard {
   setupCardAbilities(ability) {
     this.action({
       cost: ability.costs.exhaustSelf(),
-      effect: ability.effects.heal(2)
+      handler() {
+        this.parent.modifyWounds(-2);
+      }
     });
   }
-  
+
   canAttach(player, card) {
     return card.isCharacter();
   }

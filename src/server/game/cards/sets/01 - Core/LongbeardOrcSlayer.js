@@ -13,7 +13,7 @@ export default class LongbeardOrcSlayer extends AllyCard {
       targets: {
         cardCondition: card => this.cardCondition(card)
       },
-      effect: ability.costs.modifyWounds(1)
+      effect: ability.effects.modifyWounds(1)
     });
   }
 

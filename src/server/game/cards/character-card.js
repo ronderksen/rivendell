@@ -12,7 +12,6 @@ class CharacterCard extends BaseCard {
     this.defense = parseInt(cardData.def, 10);
     this.hitPoints = parseInt(cardData.hp, 10);
     this.wounds = 0;
-    this.spheres = [spheres[cardData.sphere.toLowerCase()]];
 
     this.isCommittedToQuest = false;
     this.isAttacking = false;

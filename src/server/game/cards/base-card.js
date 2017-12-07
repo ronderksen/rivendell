@@ -42,7 +42,9 @@ export default class BaseCard {
     this.name = cardData.name;
     this.text = cardData.text;
     this.cost = cardData.cost;
-    this.spheres = [spheres[cardData.sphere.toLowerCase()]];
+    if (cardData.sphere) {
+      this.spheres = [spheres[cardData.sphere.toLowerCase()]];
+    }
     this.exhausted = false;
 
     this.tokens = {};
@@ -50,6 +52,7 @@ export default class BaseCard {
     this.abilities = {
       actions: [],
       responses: [],
+      interrupts: [],
       persistentEffects: [],
       playActions: [],
     };
@@ -88,6 +91,10 @@ export default class BaseCard {
       simple: {},
       valued: {}
     });
+  }
+
+  getType() {
+    return this.type;
   }
 
   setupCardAbilities(abilityDsl) {} // eslint-disable-line no-unused-vars, class-methods-use-this

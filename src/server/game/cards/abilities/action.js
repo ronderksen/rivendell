@@ -109,7 +109,7 @@ export default class CardAction extends BaseAbility {
     if(context.player !== this.card.controller && !this.anyPlayer) {
       return false;
     }
-    
+
     if(this.card.getType() === event && !context.player.isCardInPlayableLocation(this.card, 'play')) {
       return false;
     }
@@ -129,6 +129,9 @@ export default class CardAction extends BaseAbility {
     return this.canPayCosts(context) && this.canResolveTargets(context);
   }
 
+  isClickToActivate() {
+    return this.clickToActivate;
+  }
 
   execute(player, arg) {
     const context = this.createContext(player, arg);

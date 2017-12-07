@@ -1,24 +1,61 @@
-export default class Effects {
+export default {
   modifyAttack(value) {
     return {
       apply(card) {
-        card.modifyAttack(value, true);
+        card.modifyAttack(value);
       },
       unapply(card) {
-        card.modifyAttack(-value, false);
+        card.modifyAttack(-value);
       }
     }
-  }
+  },
+
   modifyDefense(value) {
     return {
       apply(card) {
-        card.modifyDefense(value, true);
+        card.modifyDefense(value);
       },
       unapply(card) {
-        card.modifyDefense(-value, false);
+        card.modifyDefense(-value);
       }
     }
-  }
+  },
+
+  modifyHitpoints(value) {
+    return {
+      apply(card) {
+        card.modifyHitpoints(value);
+      },
+      unapply(card) {
+        card.modifyHitpoints(-value);
+      }
+    }
+  },
+
+  modifyWillpower(value) {
+    return {
+      apply(card) {
+        card.modifyWillpower(value);
+      },
+      unapply(card) {
+        card.modifyWillpower(-value);
+      }
+    }
+  },
+
+  modifyThreatStrength(value) {
+    return {
+      apply(card) {
+        card.modifyThreatStrength(value);
+      },
+      unapply(card) {
+        card.modifyThreatStrength(-value);
+      }
+    }
+  },
+
+
+
   modifyProgress(value) {
     return {
       apply(card) {
@@ -28,7 +65,7 @@ export default class Effects {
         card.modifyProgress(-value);
       }
     };
-  }
+  },
 
   modifyResources(value) {
     return {
@@ -39,7 +76,7 @@ export default class Effects {
         card.modifyResources(-value);
       }
     }
-  }
+  },
 
   modifyParentResources(value) {
     return {
@@ -50,7 +87,7 @@ export default class Effects {
         card.parent.modifyResources(-value);
       }
     }
-  }
+  },
 
   canNotAttack() {
     return {
@@ -59,6 +96,28 @@ export default class Effects {
       },
       unapply(card) {
         card.removeAttackRestriction('any');
+      }
+    }
+  },
+
+  modifyWounds(amount) {
+    return {
+      apply(card) {
+        card.modifyWounds(amount);
+      },
+      unapply(card) {
+        card.modifyWounds(-amount);
+      }
+    }
+  },
+  
+  addTrait(trait) {
+    return {
+      apply(card) {
+        card.addTrait(trait);
+      },
+      unapply(card) {
+        card.removeTrait(trait);
       }
     }
   }

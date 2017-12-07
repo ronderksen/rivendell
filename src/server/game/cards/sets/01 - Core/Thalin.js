@@ -5,7 +5,7 @@ export default class Thalin extends HeroCard {
   static code = '116-006';
 
   setupCardAbilities() {
-    this.forcedinterrupt({
+    this.interrupt({
       when: {
         [onEncounterCardRevealed]: event => this.isCommittedToQuest() && event.target.isEnemy(),
       },

@@ -10,10 +10,12 @@ export default class StewardOfGondor extends AttachmentCard {
     });
     this.action({
       cost: ability.costs.exhaustSelf(),
-      effect: ability.effects.modifyResources(2)
+      handler: () => {
+        this.parent.modifyResources(2);
+      }
     });
   }
-  
+
   canAttach(player, card) {
     return card.getType() === cardTypes.hero
   }

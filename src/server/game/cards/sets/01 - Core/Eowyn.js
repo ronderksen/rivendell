@@ -7,7 +7,10 @@ export default class Eowyn extends HeroCard {
         this.action({
           cost: ability.costs.discard(1),
           controller: 'any',
-          effect: ability.effects.modifyWillpower(1),
+          handler: () => {
+            this.modifyWillpower(1)
+          }
+
         })
     }
 }

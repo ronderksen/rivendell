@@ -11,7 +11,7 @@ export default class Dunhere extends HeroCard {
         [onCharacterAttacking]: () => true,
       },
       condition: this.effectCondition,
-      effect: ability.effect.modifyAttack(1)
+      effect: ability.effects.modifyAttack(1)
     });
   }
 

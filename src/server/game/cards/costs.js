@@ -1,7 +1,7 @@
 import ExhaustCost from './costs/exhaust-cost';
 import SelfCost from './costs/self-cost';
 // import ParentCost from './costs/parent-cost';
-import { cardTypes, locations } from '../constants';
+import {cardTypes, locations} from '../constants';
 
 const Costs = {
   all(...costs) {
@@ -17,6 +17,11 @@ const Costs = {
 
   exhaustSelf() {
     const action = new ExhaustCost();
+    return new SelfCost(action);
+  },
+
+  exhaustHero(hero) {
+    const action = new ExhaustCost(hero);
     return new SelfCost(action);
   },
 
@@ -63,7 +68,7 @@ const Costs = {
         return !context.source.isLimited() || context.player.limitedPlayed < context.player.maxLimited;
       },
       pay(context) {
-        if(context.source.isLimited()) {
+        if (context.source.isLimited()) {
           context.player.limitedPlayed += 1; // eslint-disable-line no-param-reassign
         }
       }
@@ -84,6 +89,39 @@ const Costs = {
       }
     };
   },
+
+  discard(count) {
+    return {
+      canPay(context) {
+        return context.player.drawDeck.length >= count;
+      },
+      pay(context) {
+        context.player.discard(count, locations.playerDrawDeck)
+      }
+    }
+  },
+
+  discardCardFromHand(count) {
+    return {
+      canPay(context) {
+        return context.player.hand.length >= count;
+      },
+      pay(context) {
+        context.player.discard(count, locations.hand)
+      }
+    }
+  },
+
+  modifyThreatCount(count) {
+    return {
+      canPay(context) {
+        return true;
+      },
+      pay(context) {
+        context.player.modifyThreatCount(count)
+      }
+    }
+  }
 };
 
 export default Costs;

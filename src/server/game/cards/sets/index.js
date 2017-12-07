@@ -15,9 +15,11 @@ function loadFiles(directory) {
   const files = fs.readdirSync(fullPath).filter(file => !fs.statSync(path.join(fullPath, file)).isDirectory());
 
   files.forEach(file => {
-    const card = require(`./${directory}/${file}`).default; // eslint-disable-line
+    if (!file.includes('.spec.js')) {
+      const card = require(`./${directory}/${file}`).default; // eslint-disable-line
 
-    cards[card.code] = card;
+      cards[card.code] = card;
+    }
   });
   return cards;
 }

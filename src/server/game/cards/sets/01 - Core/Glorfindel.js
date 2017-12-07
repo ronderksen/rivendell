@@ -10,7 +10,9 @@ export default class Glorfindel extends HeroCard {
         activePromptTitle: 'Select a character',
         cardCondition: card => card.isCharacter(),
       },
-      effect: ability.effects.heal(1)
+      handler: (context) => {
+       context.target.modifyWounds(-1);
+      }
     });
   }
 }
