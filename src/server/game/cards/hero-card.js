@@ -32,6 +32,10 @@ class HeroCard extends CharacterCard {
     }
     this.spheres.push(sphere);
   }
+
+  applyPersistentEffects() {
+    // TODO: implement
+  }
 }
 
 export default HeroCard;

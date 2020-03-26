@@ -1,25 +1,47 @@
-import AllPlayerPrompt from '../../prompts/all-player-prompt';
+import UiPrompt from '../../prompts/ui-prompt';
 import { onFirstPlayerSelect } from '../../events';
 
-export default class SelectFirstPlayerPrompt extends AllPlayerPrompt {
+export default class SelectFirstPlayerPrompt extends UiPrompt {
+  constructor(game, player) {
+    super(game);
+
+    this.player = player;
+  }
+
+  activeCondition(player) {
+    return player === this.player;
+  }
+
   activePrompt() {
     return {
-      menuTitle: 'Who will go first?',
-      buttons: this.game
-        .getPlayers()
-        .map(player => ({ arg: player.id, text: player.name })),
+      menuTitle: 'Select first player',
+      buttons: this.getFirstPlayerChoices()
+        .map(player => ({ text: player.name, arg: player.name }))
     };
   }
 
-  waitingPrompt() {
-    return {
-      menuTitle: 'Waiting for other players to select start player',
-    }
+  getFirstPlayerChoices() {
+    const opponents = this.game.getPlayers().filter(player => player !== this.player);
+    return [this.player].concat(opponents);
   }
 
-  onMenuCommand(player, arg) {
-    const selectedPlayer = this.game.getPlayers().find(p => p.id === arg);
-    this.game.addMessage(`${player.name} has selected ${selectedPlayer.name} to go first.`);
-    this.game.raiseEvent(onFirstPlayerSelect, { player, choice: arg });
+  onMenuCommand(player, playerName) {
+    if(player !== this.player) {
+      return false;
+    }
+
+    const firstPlayer = this.game.getPlayerByName(playerName);
+    if(firstPlayer) {
+      this.game.getPlayers().forEach(p => {
+        p.firstPlayer = firstPlayer === player; // eslint-disable-line no-param-reassign
+      });
+
+      this.game.addMessage('{0} has selected {1} to be the first player', player, firstPlayer);
+      this.game.raiseEvent(onFirstPlayerSelect, {player: firstPlayer});
+
+      this.complete();
+    }
+
+    return false;
   }
 }

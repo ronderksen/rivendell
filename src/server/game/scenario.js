@@ -1,8 +1,16 @@
 import EncounterDeck from "./encounter-deck";
 
 export default class Scenario {
-  constructor(id) {
+  constructor(id, setId) {
     this.id = id;
+    this.setId = setId;
+    this.drawDeck = {};
+  }
+
+  setEncounterDeck(deck) {
+    this.deckSelected = false;
+    this.deck = deck;
+    this.deckSelected = true;
   }
 
   prepareDeck() {

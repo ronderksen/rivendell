@@ -1,0 +1,6 @@
+{
+  "rootDir": "..",
+  "setupFiles": [
+    "<rootDir>/test/helpers/index.js"
+  ]
+}

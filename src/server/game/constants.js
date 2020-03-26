@@ -1,6 +1,7 @@
 import nskeymirror from 'nskeymirror';
 
 export const phases = nskeymirror({
+  setup: null,
   resource: null,
   planning: null,
   quest: null,
@@ -50,6 +51,7 @@ export const locations = nskeymirror({
   'questDeck': null,
   'activeLocationArea': null,
   'hand': null,
+  'outOfGame': null,
 }, 'locations');
 
 export const traits = nskeymirror({

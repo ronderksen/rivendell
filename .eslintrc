@@ -24,6 +24,7 @@
   "globals": {
     "document": false,
     "expect": false,
-    "jest": false
+    "jest": false,
+    "integration": false,
   }
 }

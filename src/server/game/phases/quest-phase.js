@@ -2,10 +2,11 @@ import Phase from './phase';
 import SimpleStep from './simple-step';
 import ActionWindow from './action-window';
 import CommitmentPrompt from './quest/commitment';
+import {phases} from "../constants";
 
 export default class QuestPhase extends Phase {
   constructor(game) {
-    super(game, 'quest');
+    super(game, phases.quest);
 
     this.initialize([
       new SimpleStep(game, () => this.beginQuesting()),

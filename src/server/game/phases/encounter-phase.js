@@ -3,7 +3,7 @@ import SimpleStep from './simple-step';
 import OptionalEngagementPrompt from './encounter/optional-engagement';
 import ActionWindow from './action-window';
 
-import { cardTypes } from '../constants';
+import {cardTypes, phases} from '../constants';
 import { onEnemyEngaged } from '../events';
 
 function byThreatValue(a, b) {
@@ -17,7 +17,7 @@ function byThreatValue(a, b) {
 
 export default class EngagementPhase extends Phase {
   constructor(game) {
-    super(game, 'encounter');
+    super(game, phases.encounter);
 
     this.initialize([
       OptionalEngagementPrompt(),

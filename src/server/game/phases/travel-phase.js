@@ -1,12 +1,12 @@
 import Phase from './phase';
 import SimpleStep from './simple-step';
 import ActionWindow from './action-window';
-import { cardTypes } from '../constants';
+import {cardTypes, phases} from '../constants';
 import LocationPrompt from './travel/location-prompt'
 
 export default class TravelPhase extends Phase {
   constructor(game) {
-    super(game, 'travel');
+    super(game, phases.travel);
 
     this.initialize([
       new SimpleStep(this.game, () => this.travelToLocation()),

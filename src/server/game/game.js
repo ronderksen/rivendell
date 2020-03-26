@@ -5,7 +5,9 @@ import Player from './player';
 import Spectator from './spectator';
 import Scenario from './scenario';
 import phases from './phases';
-import { onBeginRound } from './events';
+import {onBeginRound} from './events';
+import ForcedTriggeredAbilityWindow from "./phases/forced-triggered-ability-window";
+import TriggeredAbilityWindow from "./phases/triggered-ability-window";
 
 export default class GameEngine extends EventEmitter {
   constructor(details, options = {}) {
@@ -55,7 +57,7 @@ export default class GameEngine extends EventEmitter {
   }
 
   addMessage(...args) {
-    this.gameChat.addMessage(...args);
+    this.gameChat.addChatMessage(...args);
   }
 
   addAlert(...args) {
@@ -82,7 +84,7 @@ export default class GameEngine extends EventEmitter {
     const player = this.playersAndSpectators[playerName];
 
     if (!player || this.isSpectator(player)) {
-      return;
+      return null;
     }
 
     return player;
@@ -132,21 +134,22 @@ export default class GameEngine extends EventEmitter {
   }
 
   findAnyCardInAnyList(cardId) {
-    return this.allCards.find(card => card.uuid === cardId);
+    return this.allPlayerCards.find(card => card.uuid === cardId);
   }
 
   findAnyCardsInPlay(predicate) {
     return this.getPlayers().reduce((acc, player) => {
       acc.concat(player.findCards(player.cardsInPlay, predicate));
+      return acc;
     }, []);
   }
 
   anyCardsInPlay(predicate) {
-    return this.allCards.any(card => card.location === 'play area' && predicate(card));
+    return this.allPlayerCards.any(card => card.location === 'play area' && predicate(card));
   }
 
   filterCardsInPlay(predicate) {
-    return this.allCards.filter(card => card.location === 'play area' && predicate(card));
+    return this.allPlayerCards.filter(card => card.location === 'play area' && predicate(card));
   }
 
   selectDeck(playerName, deck) {
@@ -182,7 +185,7 @@ export default class GameEngine extends EventEmitter {
     // get all player cards
     this.allPlayerCards = this.gatherAllCards();
 
-    const { SetupPhase, SimpleStep } = phases;
+    const {SetupPhase, SimpleStep} = phases;
 
     this.pipeline.initialize([
       new SetupPhase(this),
@@ -199,7 +202,7 @@ export default class GameEngine extends EventEmitter {
     return this.getPlayers()
       .reduce((cards, player) => cards.concat(player.preparedDeck.allCards), [])
       .concat(
-        this.scenario.encounterCards,
+        this.scenario.drawDeck,
       );
   }
 
@@ -230,16 +233,20 @@ export default class GameEngine extends EventEmitter {
     this.pipeline.queueStep(step);
   }
 
+  queueSimpleStep(step) {
+    this.pipeline.queueStep(new phases.SimpleStep(this, step));
+  }
+
   continue() {
     this.pipeline.continue();
   }
 
   pushAbilityContext(source, card, stage) {
-    this.abilityCardStack.push({ source, card, stage });
+    this.abilityCardStack.push({source, card, stage});
   }
 
   applyGameAction(actionType, cards, func) {
-    if(!Array.isArray(cards)) {
+    if (!Array.isArray(cards)) {
       cards = [cards]; // eslint-disable-line no-param-reassign
     }
 
@@ -252,14 +259,86 @@ export default class GameEngine extends EventEmitter {
       return acc;
     }, [[], []]);
 
-    if(disallowed.length === 0) {
+    if (disallowed.length === 0) {
       // TODO: add a cannot / immunity message.
     }
 
-    if(allowed.length === 0) {
+    if (allowed.length === 0) {
       return;
     }
 
     func(allowed);
+  }
+
+  reapplyStateDependentEffects() {
+    // TODO: implement
+  }
+
+  raiseEvent(eventName, params, handler) {
+    const {EventWindow} = phases;
+    if (!handler) {
+      handler = () => true; // eslint-disable-line no-param-reassign
+    }
+
+    this.queueStep(new EventWindow(this, eventName, params || {}, handler, true));
+  }
+
+  openAbilityWindow(properties) {
+    const WindowClass = ['forcedreaction', 'forcedinterrupt', 'whenrevealed']
+      .includes(properties.abilityType) ?
+      ForcedTriggeredAbilityWindow :
+      TriggeredAbilityWindow;
+
+    const window = new WindowClass(this, {abilityType: properties.abilityType, event: properties.event});
+    this.abilityWindowStack.push(window);
+    window.emitEvents();
+    this.queueStep(window);
+    this.queueSimpleStep(() => this.abilityWindowStack.pop());
+  }
+
+  menuButton(playerName, arg, method) {
+    const player = this.getPlayerByName(playerName);
+    if(!player) {
+      return false;
+    }
+
+    return this.pipeline.handleMenuCommand(player, arg, method);
+  }
+
+  cardClicked(sourcePlayer, cardId) {
+    const player = this.getPlayerByName(sourcePlayer);
+
+    if(!player) {
+      return;
+    }
+
+    const card = this.findAnyCardInAnyList(cardId);
+
+    if(!card) {
+      return;
+    }
+
+    if(this.pipeline.handleCardClicked(player, card)) {
+      return;
+    }
+
+    // Attempt to play cards that are not already in the play area.
+    if(['hand', 'discard pile', 'dead pile'].includes(card.location) && player.playCard(card)) {
+      return;
+    }
+
+    if(card.onClick(player)) {
+      return;
+    }
+
+    if(!card.facedown && card.location === 'play area' && card.controller === player) {
+      if(card.exhausted) {
+        player.readyCard(card);
+      } else {
+        player.exhaustCard(card);
+      }
+
+      this.addAlert('danger', '{0} {1} {2}', player, card.kneeled ? 'kneels' : 'stands', card);
+    }
   }
 }

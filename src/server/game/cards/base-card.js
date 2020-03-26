@@ -1,7 +1,7 @@
 import uuid from 'uuid';
-import { durations, spheres } from '../constants';
+import {durations, locations, spheres} from '../constants';
 import AbilityDsl from './ability-dsl';
-import { CardAction, CardResponse, CardInterrupt } from './abilities';
+import {CardAction, CardInterrupt, CardResponse} from './abilities';
 
 const validKeywords = [
   'ambush',
@@ -97,7 +97,8 @@ export default class BaseCard {
     return this.type;
   }
 
-  setupCardAbilities(abilityDsl) {} // eslint-disable-line no-unused-vars, class-methods-use-this
+  setupCardAbilities(abilityDsl) {
+  } // eslint-disable-line no-unused-vars, class-methods-use-this
 
   action(properties) {
     const action = new CardAction(this.game, this, properties);
@@ -126,8 +127,8 @@ export default class BaseCard {
   }
 
   persistentEffect(properties) {
-    const { persistent } = durations;
-    this.abilities.persistentEffects.push(Object.assign({ duration: persistent }, properties));
+    const {persistent} = durations;
+    this.abilities.persistentEffects.push(Object.assign({duration: persistent}, properties));
   }
 
   isCharacter() {
@@ -140,5 +141,60 @@ export default class BaseCard {
 
   ready() {
     this.exhausted = false;
+  }
+
+  onClick(player) {
+    const action = this.abilities.actions.find(a => a.isClickToActivate());
+    if (action) {
+      return action.execute(player) || action.deactivate(player);
+    }
+
+    return false;
+  }
+
+  moveTo(targetLocation, parent) {
+    const originalLocation = this.location;
+    const originalParent = this.parent;
+
+    this.location = targetLocation;
+    this.parent = parent;
+
+    // if(LocationsWithEventHandling.includes(targetLocation) && !LocationsWithEventHandling.includes(originalLocation)) {
+    //   this.events.register(this.eventsForRegistration);
+    // } else if(LocationsWithEventHandling.includes(originalLocation) && !LocationsWithEventHandling.includes(targetLocation)) {
+    //   this.events.unregisterAll();
+    // }
+
+    this.abilities.actions.forEach(action => {
+      if(action.isEventListeningLocation(targetLocation) && !action.isEventListeningLocation(originalLocation)) {
+        action.registerEvents();
+      } else if(action.isEventListeningLocation(originalLocation) && !action.isEventListeningLocation(targetLocation)) {
+        action.unregisterEvents();
+      }
+    });
+    this.abilities.responses.forEach(reaction => {
+      if(reaction.isEventListeningLocation(targetLocation) && !reaction.isEventListeningLocation(originalLocation)) {
+        reaction.registerEvents();
+        this.game.registerAbility(reaction);
+      } else if(reaction.isEventListeningLocation(originalLocation) && !reaction.isEventListeningLocation(targetLocation)) {
+        reaction.unregisterEvents();
+      }
+    });
+
+    if(targetLocation !== locations.playArea) {
+      this.facedown = false;
+    }
+
+    if(originalLocation !== targetLocation || originalParent !== parent) {
+      this.game.raiseEvent('onCardMoved', {
+        card: this, originalLocation,
+        newLocation: targetLocation,
+        parentChanged: originalParent !== parent
+      });
+    }
+  }
+
+  flip(forceFaceUp) {
+    this.faceup = forceFaceUp || !this.faceup;
   }
 }

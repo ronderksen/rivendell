@@ -6,7 +6,7 @@ export default class GamePipeline {
 
   initialize(steps) {
     if(!Array.isArray(steps)) {
-      steps = [steps];
+      steps = [steps]; // eslint-disable-line no-param-reassign
     }
 
     this.pipeline = steps;
@@ -83,7 +83,6 @@ export default class GamePipeline {
   continue() {
     while(this.pipeline.length > 0) {
       const currentStep = this.getCurrentStep();
-
       // Explicitly check for a return of false - if no return values is
       // defined then just continue to the next step.
       if(currentStep.continue() === false) {
@@ -91,7 +90,7 @@ export default class GamePipeline {
           return false;
         }
       } else {
-        const [_, ...rest] = this.pipeline;
+        const [, ...rest] = this.pipeline;
         this.pipeline = rest;
       }
       this.pipeline = this.queue.concat(this.pipeline);
@@ -108,7 +107,7 @@ export default class GamePipeline {
   }
 
   getDebugInfoForStep(step) {
-    const name = step.constructor.name;
+    const {name} = step.constructor;
     if(step.pipeline) {
       return {
         [name]: step.pipeline.getDebugInfo()

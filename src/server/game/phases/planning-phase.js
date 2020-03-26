@@ -2,10 +2,11 @@ import Phase from './phase';
 import SimpleStep from './simple-step';
 import ActionWindow from './action-window';
 import PlanningPrompt from './planning/planning-prompt';
+import {phases} from "../constants";
 
 export default class PlanningPhase extends Phase {
   constructor(game) {
-    super(game, 'planning');
+    super(game, phases.planning);
 
     this.initialize([
       new SimpleStep(game, () => this.beginPlanning()),

@@ -13,10 +13,11 @@ export default class Deck {
   }
 
   eachRepeatedCard(cards, func) {
-    return cards.forEach(cardEntry => {
+    return cards.reduce((acc, cardEntry) => {
       for (let i = 0; i < cardEntry.count; i += 1) {
-        func(cardEntry.card);
+        acc.push(func(cardEntry.card));
       }
-    });
+      return acc;
+    }, []);
   }
 }

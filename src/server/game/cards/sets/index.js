@@ -16,7 +16,7 @@ function loadFiles(directory) {
 
   files.forEach(file => {
     if (!file.includes('.spec.js')) {
-      const card = require(`./${directory}/${file}`).default; // eslint-disable-line
+      const card = require(`./${directory}/${file}`); // eslint-disable-line
 
       cards[card.code] = card;
     }

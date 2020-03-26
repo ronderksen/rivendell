@@ -1,10 +1,11 @@
 import Phase from './phase';
 import SimpleStep from './simple-step';
 import ActionWindow from './action-window';
+import {phases} from "../constants";
 
 export default class ResourcePhase extends Phase {
   constructor(game) {
-    super(game, 'resource');
+    super(game, phases.resource);
 
     this.initialize([
       new SimpleStep(this.game, () => this.addResourcesToHeroes()),

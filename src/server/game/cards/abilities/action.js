@@ -1,4 +1,4 @@
-import { cardTypes, locations } from '../../constants';
+import {cardTypes, locations, phases} from '../../constants';
 import BaseAbility from './base-ability';
 import Costs from '../costs';
 import EventRegistrar from '../event-registrar';
@@ -94,7 +94,7 @@ export default class CardAction extends BaseAbility {
 
   meetsRequirements(context) {
     const { event } = cardTypes;
-    if(this.phase !== 'any' && this.phase !== this.game.currentPhase || this.game.currentPhase === 'setup') {
+    if(this.phase !== 'any' && this.phase !== this.game.currentPhase || this.game.currentPhase === phases.setup) {
       return false;
     }
 
@@ -152,5 +152,9 @@ export default class CardAction extends BaseAbility {
     if(success !== false && this.limit) {
       this.limit.increment();
     }
+  }
+
+  isEventListeningLocation(location) {
+    // TODO: implement
   }
 }

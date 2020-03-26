@@ -4,27 +4,21 @@ import DrawCard from "./cards/draw-card";
 import {locations} from "./constants";
 
 export default class PlayerDeck extends Deck {
-  constructor(game, player, data) {
-    super(data);
-    this.game = game;
-    this.owner = player;
-    this.controller = player;
-  }
-
-  prepare() {
+  prepare(player) {
     const result = {
       heroes: [],
       drawCards: [],
       allCards: [],
     };
 
-    result.heroes = this.data.heroes
-      .forEach(heroData => this.createCard(HeroCard, this.controller, heroData));
+    result.heroes = Object.values(this.data.heroes)
+      .map(heroData => this.createCard(HeroCard, player, heroData));
 
-    result.drawCards = this.eachRepeatedCard(this.data.drawCards, cardData => ({
-      ...this.createCard(DrawCard, this.controller, cardData),
-      location: locations.playerDrawDeck,
-    }));
+    result.drawCards = this.eachRepeatedCard(Object.values(this.data.drawCards), cardData => {
+      const card = this.createCard(DrawCard, player, cardData);
+      card.location = locations.playerDrawDeck;
+      return card;
+    });
 
     result.allCards = result.heroes.concat(result.drawCards);
 
